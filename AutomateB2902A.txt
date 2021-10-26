@@ -1,0 +1,4 @@
+1. Install Keysight IO Libraries Suite 17.0 or newer.
+2. Install IVI Shared Components 3.0.0 or newer.
+3. Install B2900A Precision Source Measure Unit IVI and MATLAB Instrument Drivers
+4. Have MATLAB 2015b 32-bit available.

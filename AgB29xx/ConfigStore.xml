@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<IviConfigStore xmlns:dt="urn:schemas-microsoft-com:datatypes">
+	<Name>IVI Configuration Server</Name>
+	<Description>The IVI Configuration Server allows access to and modification of an IVI configuration store</Description>
+	<Vendor>IVI Foundation, Inc</Vendor>
+	<Revision>1.3.1.0</Revision>
+	<SpecificationMajorVersion>1</SpecificationMajorVersion>
+	<SpecificationMinorVersion>0</SpecificationMinorVersion>
+	<MasterLocation>
+	</MasterLocation>
+	<ProcessDefaultLocation />
+	<ActualLocation>
+	</ActualLocation>
+	<PublishedAPIs>
+		<IviPublishedAPI id="p50">
+			<Name>IviDriver</Name>
+			<MajorVersion>1</MajorVersion>
+			<MinorVersion>0</MinorVersion>
+			<Type>IVI-COM</Type>
+		</IviPublishedAPI>
+		<IviPublishedAPI id="p51">
+			<Name>IviDCPwr</Name>
+			<MajorVersion>3</MajorVersion>
+			<MinorVersion>0</MinorVersion>
+			<Type>IVI-COM</Type>
+		</IviPublishedAPI>
+		<IviPublishedAPI id="p52">
+			<Name>IviDriver</Name>
+			<MajorVersion>1</MajorVersion>
+			<MinorVersion>0</MinorVersion>
+			<Type>IVI-C</Type>
+		</IviPublishedAPI>
+		<IviPublishedAPI id="p53">
+			<Name>IviDCPwr</Name>
+			<MajorVersion>3</MajorVersion>
+			<MinorVersion>0</MinorVersion>
+			<Type>IVI-C</Type>
+		</IviPublishedAPI>
+	</PublishedAPIs>
+	<SoftwareModules>
+		<IviSoftwareModule id="p1">
+			<Name>AgB29xx</Name>
+			<Description>IVI Driver for B29xx family of Precision source/Measure instruments.</Description>
+			<DataComponents>
+				<IviStructure id="p2">
+					<Name>Configurable Initial Settings</Name>
+					<Description />
+					<ReadOnly>1</ReadOnly>
+					<UsedInSession>Required</UsedInSession>
+					<Type>Structure</Type>
+					<HelpContextID>0</HelpContextID>
+					<HelpFilePath />
+					<SoftwareModuleKey />
+					<DataComponents>
+						<IviString id="p3">
+							<Name>Model</Name>
+							<Description>Default model used during simulation</Description>
+							<ReadOnly>1</ReadOnly>
+							<UsedInSession>Required</UsedInSession>
+							<Type>String</Type>
+							<HelpContextID>0</HelpContextID>
+							<HelpFilePath />
+							<SoftwareModuleKey />
+							<Value>B2962A</Value>
+						</IviString>
+					</DataComponents>
+				</IviStructure>
+			</DataComponents>
+			<ModulePath>AgB29xx.dll</ModulePath>
+			<Prefix>AgB29xx</Prefix>
+			<ProgID>AgB29xx.AgB29xx</ProgID>
+			<SupportedInstrumentModels>B2901A,B2902A,B2911A,B2912A,B2961A,B2962A,B2901B,B2901BL,B2902B,B2910BL,B2911B,B2912B,B2961B,B2962B</SupportedInstrumentModels>
+			<PhysicalNames>
+				<IviPhysicalName id="p100">
+					<Name>Measurement1</Name>
+					<RCName>Measurement</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p101">
+					<Name>Window1</Name>
+					<RCName>Window</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p102">
+					<Name>Window2</Name>
+					<RCName>Window</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p103">
+					<Name>LimitTest1</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p104">
+					<Name>LimitTest2</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p105">
+					<Name>LimitTest3</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p106">
+					<Name>LimitTest4</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p107">
+					<Name>LimitTest5</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p108">
+					<Name>LimitTest6</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p109">
+					<Name>LimitTest7</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p110">
+					<Name>LimitTest8</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p111">
+					<Name>LimitTest9</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p112">
+					<Name>LimitTest10</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p113">
+					<Name>LimitTest11</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p114">
+					<Name>LimitTest12</Name>
+					<RCName>LimitTest</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p115">
+					<Name>Transient1</Name>
+					<RCName>Transient</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p116">
+					<Name>OutputChannel1</Name>
+					<RCName>OutputChannel</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p117">
+					<Name>ArmAlarm!!LAN0</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p118">
+					<Name>ArmAlarm!!LAN1</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p119">
+					<Name>ArmAlarm!!LAN2</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p120">
+					<Name>ArmAlarm!!LAN3</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p121">
+					<Name>ArmAlarm!!LAN4</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p122">
+					<Name>ArmAlarm!!LAN5</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p123">
+					<Name>ArmAlarm!!LAN6</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p124">
+					<Name>ArmAlarm!!LAN7</Name>
+					<RCName>ArmAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p125">
+					<Name>ArmSource!!LAN0</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p126">
+					<Name>ArmSource!!LAN1</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p127">
+					<Name>ArmSource!!LAN2</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p128">
+					<Name>ArmSource!!LAN3</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p129">
+					<Name>ArmSource!!LAN4</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p130">
+					<Name>ArmSource!!LAN5</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p131">
+					<Name>ArmSource!!LAN6</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p132">
+					<Name>ArmSource!!LAN7</Name>
+					<RCName>ArmSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p133">
+					<Name>TriggerAlarm!!LAN0</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p134">
+					<Name>TriggerAlarm!!LAN1</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p135">
+					<Name>TriggerAlarm!!LAN2</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p136">
+					<Name>TriggerAlarm!!LAN3</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p137">
+					<Name>TriggerAlarm!!LAN4</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p138">
+					<Name>TriggerAlarm!!LAN5</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p139">
+					<Name>TriggerAlarm!!LAN6</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p140">
+					<Name>TriggerAlarm!!LAN7</Name>
+					<RCName>TriggerAlarm</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p141">
+					<Name>TriggerSource!!LAN0</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p142">
+					<Name>TriggerSource!!LAN1</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p143">
+					<Name>TriggerSource!!LAN2</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p144">
+					<Name>TriggerSource!!LAN3</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p145">
+					<Name>TriggerSource!!LAN4</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p146">
+					<Name>TriggerSource!!LAN5</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p147">
+					<Name>TriggerSource!!LAN6</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p148">
+					<Name>TriggerSource!!LAN7</Name>
+					<RCName>TriggerSource</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p149">
+					<Name>Event!!LAN0</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p150">
+					<Name>Event!!LAN1</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p151">
+					<Name>Event!!LAN2</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p152">
+					<Name>Event!!LAN3</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p153">
+					<Name>Event!!LAN4</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p154">
+					<Name>Event!!LAN5</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p155">
+					<Name>Event!!LAN6</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p156">
+					<Name>Event!!LAN7</Name>
+					<RCName>Event</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+				<IviPhysicalName id="p157">
+					<Name>UDEF1</Name>
+					<RCName>UserWaveform</RCName>
+					<PhysicalNames />
+					<PhysicalRanges />
+				</IviPhysicalName>
+			</PhysicalNames>
+			<PublishedAPIs>
+				<IviPublishedAPI idref="p50" />
+				<IviPublishedAPI idref="p51" />
+				<IviPublishedAPI idref="p52" />
+				<IviPublishedAPI idref="p53" />
+			</PublishedAPIs>
+			<AssemblyQualifiedClassName>
+			</AssemblyQualifiedClassName>
+			<ModulePath64>AgB29xx_64.dll</ModulePath64>
+		</IviSoftwareModule>
+	</SoftwareModules>
+	<HardwareAssets />
+	<DriverSessions />
+	<Sessions />
+	<LogicalNames />
+</IviConfigStore>

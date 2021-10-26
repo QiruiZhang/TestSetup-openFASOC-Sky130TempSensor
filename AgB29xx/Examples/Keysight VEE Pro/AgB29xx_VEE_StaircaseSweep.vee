@@ -1,0 +1,1166 @@
+(saveFormat "7.0")
+(date "Thu 13/Sep/2012 09:41:36 ")
+(veerev "9.2.13522.0")
+(platform "PC")
+(execMode v6)
+(prefExecMode v6)
+(filterNAN 0)
+(workspaceStackingOrder M)
+(sysconfig
+(iodevice "AgilentXxx"
+(type GPIB)
+(gateway "This host")
+(channel 7)
+(subchannel 14)
+(readTerm "\n")
+(fs ",")
+(eol "\n")
+(multiField dataOnly)
+(arrayFormat linear)
+(timeout 5)
+(byteOrder 0)
+(ivicomFile "AgilentDriverShell")
+(ivicomAddr "GPIB0::14::INSTR")
+(eoiEnabled 1)
+(model ""
+(standard 488)))
+(iodevice "AgB2912x"
+(type GPIB-VISA)
+(channel 130)
+(readTerm "\n")
+(fs ",")
+(eol "\n")
+(multiField dataOnly)
+(arrayFormat linear)
+(timeout 5)
+(byteOrder 0)
+(ppAddr "GPIB0::12::INSTR")
+(ivicomFile "AgB29xx")
+(ivicomAddr "GPIB0::12::INSTR")
+(model "")
+(eoiEnabled 1)
+(VISAddr "GPIB0::12::INSTR")
+(model ""
+(standard 488))))
+(SaveCF no)
+(device 0 ROOTCONTEXT
+(assemblyRefs
+(assemblyRef 1
+(displayName
+"mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")
+(filename "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\mscorlib.dll"))
+(assemblyRef 2
+(displayName
+"Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(libid "{B592B311-CF69-4CCA-8178-06F58F98A231}")
+(desc "IVI AgB29xx 1.0 Type Library")
+(filename
+"c:\\Mstf\\IVIDrivers\\Nimbus2\\Drivers\\AgB29xx\\bin\\x86\\Release\\AgB29xx.dll"
+)
+(verMajor 1)
+(verMinor 0)
+(lcid 0)
+(isPIA 1)
+(IAFilename
+"C:\\Mstf\\IVIDrivers\\Nimbus2\\Drivers\\AgB29xx\\Examples\\Agilent VEE Pro\\Agilent.AgB29xx.Interop.dll"
+))
+(assemblyRef 3
+(displayName
+"Ivi.Visa.Interop, Version=5.0.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1"
+)
+(libid "{db8cbf00-d6d3-11d4-aa51-00a024ee30bd}")
+(desc "VISA COM 3.0 Type Library")
+(filename "C:\\Program Files (x86)\\IVI Foundation\\VISA\\VisaCom\\GlobMgr.dll")
+(verMajor 3)
+(verMinor 0)
+(lcid 0)
+(isPIA 1)
+(IAFilename
+"C:\\Program Files (x86)\\IVI Foundation\\VISA\\VisaCom\\Primary Interop Assemblies\\Ivi.Visa.Interop.dll"
+))
+(selectedNamespaces "Agilent.AgB29xx.Interop,"))
+(properties
+(variableName Main)
+(variableScope glob)
+(trigMode deg)
+(nextID 81)
+(popupTitleText "Untitled")
+(popupMoveable 1)
+(deleteGlobals 0))
+(deviceList
+(device 17 TEXTDISPLAY
+(properties
+(name "FirmwareRevision")
+(variableScope cont))
+(interface
+(input 1
+(name "Data"))))
+(device 18 TEXTDISPLAY
+(properties
+(name "Identifier")
+(variableScope cont))
+(interface
+(input 1
+(name "Data"))))
+(device 27 DECLVAR
+(properties
+(name "Declare agb29xxClass")
+(scope glob)
+(globalName "agb29xxClass"))
+(implementation
+(value Object
+(data  ".NET OFF Agilent.AgB29xx.Interop,Agilent.AgB29xx.Interop.AgB29xx"))))
+(device 28 NOTE
+(properties
+(name "Information")
+(variableScope cont)
+(text2 1
+"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset0 Times New Roman;}}\r\n{\\colortbl ;\\red0\\green0\\blue0;}\r\n\\viewkind4\\uc1\\pard\\cf1\\fs20 Always use a global Declare Variable object to hold the driver class object instantiated by CreateInstance.  This global variable is then used by all subsequent To/From driver objects in your program.\\f1\\fs24\\par\r\n}\r\n"
+)))
+(device 30 LITERALCONSTANT
+(properties
+(name "ResourceName")
+(variableScope cont)
+(enableEditing 1))
+(interface
+(output 1
+(name "Text")
+(lock name constraints)))
+(implementation
+(value Text
+(data  "GPIB0::23::INSTR"))
+(initValue Text
+(data  ""))))
+(device 31 LITERALCONSTANT
+(properties
+(name "OptionString")
+(variableScope cont)
+(enableEditing 1))
+(interface
+(output 1
+(name "Text")
+(lock name constraints)))
+(implementation
+(value Text
+(data  "Simulate=true"))
+(initValue Text
+(data  ""))))
+(device 32 TEXTDISPLAY
+(properties
+(name "Model")
+(variableScope cont))
+(interface
+(input 1
+(name "Data"))))
+(device 33 NOTE
+(properties
+(name "Agilent IVI Driver Example Program")
+(variableScope cont)
+(text2 1
+"{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset0 Times New Roman;}}\r\n{\\colortbl ;\\red0\\green0\\blue0;}\r\n\\viewkind4\\uc1\\pard\\cf1\\fs20 This example program runs without an instrument in simulation mode.  To run with an instrument change the OptionString to \"Simulate=false\" and edit the ResourceName as needed.  The program initializes the driver and displays some identity properties.\\f1\\fs24\\par\r\n}\r\n"
+)))
+(device 35 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1
+"agB29xxClass = CreateInstance(\"Agilent.AgB29xx.Interop\", \"Agilent.AgB29xx.Interop.AgB29xxClass\")"
+)
+(parmInfo 4 "3" "T 0" "T 0" "T 0")
+(memberInfos 1 "Void .ctor()")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 36 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 4 "identifier = agB29xxClass.Identity.Identifier"
+"agB29xxClass.Initialize(ResourceName, asVariantBool(True), asVariantBool(True), OptionString)"
+"instrumentFirmwareRevision = agB29xxClass.Identity.InstrumentFirmwareRevision"
+"instrumentModel = agB29xxClass.Identity.InstrumentModel")
+(parmInfo 11 "1" "T 0" "4" "T 0" "T 0" "T 0" "T 0" "1" "T 0" "1" "T 0")
+(memberInfos 4 "System.String Identifier"
+"Void Initialize(System.String, Boolean, Boolean, System.String)"
+"System.String InstrumentFirmwareRevision" "System.String InstrumentModel")
+(statics 4 "0" "0" "0" "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "ResourceName")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(input 2
+(name "OptionString")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(output 1
+(name "identifier")
+(optional yes))
+(output 2
+(name "instrumentFirmwareRevision")
+(optional yes))
+(output 3
+(name "instrumentModel")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 37 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "agB29xxClass.Close()")
+(parmInfo 1 "0")
+(memberInfos 1 "Void Close()")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 38 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "NoOfChannels = agB29xxClass.Outputs.Count")
+(parmInfo 2 "1" "T 0")
+(memberInfos 1 "Int32 Count")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(output 1
+(name "NoOfChannels")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 41 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "name = agB29xxClass.Outputs.Name(Index)")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "System.String Name [Int32]")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Index")
+(requires
+(datatype Int32)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(output 1
+(name "name")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 42 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 3
+"agB29xxClass.Outputs.Item(name).Voltage.AutoRangeEnabled = asVariantBool(False)"
+"agB29xxClass.Outputs.Item(name).Voltage.Range = 20"
+"agB29xxClass.Outputs.Item(name).Voltage.Level = 0")
+(parmInfo 9 "2" "T 0" "T 0" "2" "T 0" "T 0" "2" "T 0" "T 0")
+(memberInfos 3 "Boolean AutoRangeEnabled" "Double Range" "Double Level")
+(statics 3 "0" "0" "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 57 FORRANGE
+(properties
+(variableScope cont)
+(from 1)
+(thru 2)
+(step 1))
+(interface
+(input 1
+(name "Thru")
+(tag "Thru")
+(requires
+(datatype Real64)
+(shape "Scalar"))
+(lock constraints)
+(optional yes)
+(buffer YES))
+(output 1
+(name "Data")
+(lock name constraints))))
+(device 59 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "name = agB29xxClass.Measurements.Name(Index)")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "System.String Name [Int32]")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Index")
+(requires
+(datatype Int32)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(output 1
+(name "name")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 60 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "agB29xxClass.Measurements.Item(Name).Current.NPLC = 0.1")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "Double NPLC")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 61 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "agB29xxClass.Outputs.Item(Name).Enabled = asVariantBool(True)")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "Boolean Enabled")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 62 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 2 "agB29xxClass.Trigger.Initiate(ChanList)"
+"return = agB29xxClass.Measurements.FetchArrayData(Agilent.AgB29xx.Interop.AgB29xxMeasurementFetchTypeEnum.AgB29xxMeasurementFetchTypeCurrent, ChanList)"
+)
+(parmInfo 6 "1" "T 0" "3" "T 0" "T 0" "T 0")
+(memberInfos 2 "Void Initiate(System.String)"
+"Double[] FetchArrayData(Agilent.AgB29xx.Interop.AgB29xxMeasurementFetchTypeEnum, System.String)"
+)
+(statics 2 "0" "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "ChanList")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(output 1
+(name "return")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 63 TEXTDISPLAY
+(properties
+(variableScope cont))
+(interface
+(input 1
+(name "Data"))))
+(device 64 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "agB29xxClass.Outputs.Item(Name).Enabled = asVariantBool(False)"
+)
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "Boolean Enabled")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 65 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "name = agB29xxClass.Outputs.Name(Index)")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "System.String Name [Int32]")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Index")
+(requires
+(datatype Int32)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(output 1
+(name "name")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 66 FORRANGE
+(properties
+(variableScope cont)
+(from 1)
+(thru 2)
+(step 1))
+(interface
+(input 1
+(name "Thru")
+(tag "Thru")
+(requires
+(datatype Real64)
+(shape "Scalar"))
+(lock constraints)
+(optional yes)
+(buffer YES))
+(output 1
+(name "Data")
+(lock name constraints))))
+(device 68 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "name = agB29xxClass.Transients.Name(Index)")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "System.String Name [Int32]")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Index")
+(requires
+(datatype Int32)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes))
+(output 1
+(name "name")
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 69 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 4
+"agB29xxClass.Transients.Item(Name).Voltage.Mode = Agilent.AgB29xx.Interop.AgB29xxTransientCurrentVoltageModeEnum.AgB29xxTransientCurrentVoltageModeSweep"
+"agB29xxClass.Transients.Item(Name).Voltage.Start = -5"
+"agB29xxClass.Transients.Item(Name).Voltage.Stop = 5"
+"agB29xxClass.Transients.Item(Name).Voltage.SweepPoints = 11")
+(parmInfo 12 "2" "T 0" "T 0" "2" "T 0" "T 0" "2" "T 0" "T 0" "2" "T 0" "T 0")
+(memberInfos 4
+"Agilent.AgB29xx.Interop.AgB29xxTransientCurrentVoltageModeEnum Mode"
+"Double Start" "Double Stop" "Int32 SweepPoints")
+(statics 4 "0" "0" "0" "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 70 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "agB29xxClass.Transients.Item(Name).Trigger.Count = 11")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "Int32 Count")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 71 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 1 "agB29xxClass.Measurements.Item(Name).Trigger.Count = 11")
+(parmInfo 3 "2" "T 0" "T 0")
+(memberInfos 1 "Int32 Count")
+(statics 1 "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(device 72 JUNCTION
+(properties
+(name "JCT")
+(variableScope cont))
+(interface
+(input 1
+(name "A"))
+(input 2
+(name "B"))
+(output 1
+(name "Data"))))
+(device 73 FORMULA
+(properties
+(name "Create Message")
+(variableScope cont)
+(expr 2 "A =\"(@1,2)\"" ""))
+(interface
+(output 1
+(name "A")
+(optional yes))))
+(device 74 FORMULA
+(properties
+(name "Create Message")
+(variableScope cont)
+(expr 2 "A =\"(@1)\"" ""))
+(interface
+(output 1
+(name "A")
+(optional yes))))
+(device 75 IFTHENELSE
+(properties
+(variableScope cont)
+(cases 1 "A==1"))
+(interface
+(input 1
+(name "A")
+(optional yes))
+(output 1
+(name "Then")
+(lock name constraints))
+(output 2
+(name "Else")
+(lock name constraints))))
+(device 77 IFTHENELSE
+(properties
+(variableScope cont)
+(cases 1 "A==\"B2961A\" OR A==\"B2962A\""))
+(interface
+(input 1
+(name "A")
+(optional yes))
+(output 1
+(name "Then")
+(lock name constraints))
+(output 2
+(name "Else")
+(lock name constraints))))
+(device 78 JUNCTION
+(properties
+(name "JCT")
+(variableScope cont))
+(interface
+(input 1
+(name "A"))
+(input 2
+(name "B"))
+(output 1
+(name "Data"))))
+(device 80 IVICOMBUILDER
+(properties
+(name "To/From AgB2912x")
+(variableScope cont)
+(transactions 2
+"agB29xxClass.Measurements.Item(Name).Current.AutoRangeEnabled = asVariantBool(True)"
+"agB29xxClass.Measurements.Item(Name).Current.NPLC = 0.1")
+(parmInfo 6 "2" "T 0" "T 0" "2" "T 0" "T 0")
+(memberInfos 2 "Boolean AutoRangeEnabled" "Double NPLC")
+(statics 2 "0" "0")
+(assemblyQualifiedName
+"Agilent.AgB29xx.Interop.AgB29xxClass, Agilent.AgB29xx.Interop, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ced78d295d1e0f2b"
+)
+(objectName "agB29xxClass")
+(addrString "GPIB0::12::INSTR")
+(performQuery 1)
+(performReset 1)
+(sessionFactory 0)
+(classCompliant 0))
+(interface
+(input 1
+(name "Name")
+(requires
+(datatype Text)
+(shape "Scalar"))
+(lock name constraints)
+(optional yes)))
+(implementation
+(prefix "AgB29xx")
+(ioDev "AgB2912x")))
+(configuration
+(connect D9:2 D0:1)
+(connect D9:1 D1:1)
+(connect D9:3 D6:1)
+(connect D8:0 D9:0)
+(connect D4:1 D9:1)
+(connect D5:1 D9:2)
+(connect D22:0 D10:0)
+(connect D9:0 D11:0)
+(connect D14:1 D12:1)
+(connect D12:1 D13:1)
+(connect D11:1 D14:1)
+(connect D14:1 D15:1)
+(connect D31:1 D16:0)
+(connect D15:1 D16:1)
+(connect D26:0 D17:0)
+(connect D12:1 D17:1)
+(connect D14:0 D18:0)
+(connect D27:1 D18:1)
+(connect D18:1 D19:1)
+(connect D21:1 D20:1)
+(connect D22:1 D21:1)
+(connect D19:0 D22:0)
+(connect D11:1 D22:1)
+(connect D14:1 D23:1)
+(connect D23:1 D24:1)
+(connect D32:1 D25:0)
+(connect D23:1 D25:1)
+(connect D15:1 D26:1)
+(connect D29:1 D27:1)
+(connect D28:1 D27:2)
+(connect D30:2 D28:0)
+(connect D30:1 D29:0)
+(connect D11:1 D30:1)
+(connect D13:0 D31:0)
+(connect D9:3 D31:1)
+(connect D16:0 D32:1)
+(connect D33:0 D32:2)
+(connect D31:2 D33:0)
+(connect D15:1 D33:1)))
+(contextCarrier
+(wndRestoredOrigin 2 2)
+(wndRestoredExtent 528 391)
+(wndState max)
+(active detail)
+(detail
+(extent 1250 814)
+(anchorPt 197 262)
+(configuration
+(devCarrierFor 17
+(active open)
+(icon
+(extent 110 0))
+(open
+(extent 194 26))
+(pinCenter 790 170))
+(devCarrierFor 18
+(active open)
+(icon
+(extent 51 0))
+(open
+(extent 184 26))
+(pinCenter 790 50))
+(devCarrierFor 27
+(active icon)
+(icon
+(extent 136 15))
+(open
+(extent 484 126))
+(pinCenter 410 -100))
+(devCarrierFor 28
+(active open)
+(icon
+(extent 68 0)
+(iconImage "notepad.icn"))
+(open
+(extent 334 86)
+(editing disabled))
+(pinCenter 710 -120))
+(devCarrierFor 30
+(active open)
+(icon
+(extent 96 0))
+(open
+(extent 174 29))
+(pinCenter 10 80))
+(devCarrierFor 31
+(active open)
+(icon
+(extent 74 0))
+(open
+(extent 174 29))
+(pinCenter 10 140))
+(devCarrierFor 32
+(active open)
+(icon
+(extent 37 0))
+(open
+(extent 194 26))
+(pinCenter 790 110))
+(devCarrierFor 33
+(active open)
+(icon
+(extent 209 0)
+(iconImage "notepad.icn"))
+(open
+(extent 354 166)
+(editing disabled))
+(pinCenter 100 -80))
+(devCarrierFor 35
+(active icon)
+(icon
+(extent 112 15))
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 430 -10))
+(devCarrierFor 36
+(active open)
+(icon)
+(open
+(extent 194 76))
+(terminals on)
+(pinCenter 390 80))
+(devCarrierFor 37
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 130 1040))
+(devCarrierFor 38
+(active open)
+(icon)
+(open
+(extent 184 56))
+(terminals on)
+(pinCenter 15 270))
+(devCarrierFor 41
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 445 380))
+(devCarrierFor 42
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 800 380))
+(devCarrierFor 57
+(active open)
+(icon
+(iconImage "loop.icn"))
+(open
+(extent 99 79))
+(pinCenter 120 510))
+(devCarrierFor 59
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 445 500))
+(devCarrierFor 60
+(active icon)
+(icon
+(extent 112 15))
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 820 450))
+(devCarrierFor 61
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 780 820))
+(devCarrierFor 62
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 110 650))
+(devCarrierFor 63
+(active open)
+(icon)
+(open
+(extent 144 216))
+(pinCenter 400 720))
+(devCarrierFor 64
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 790 930))
+(devCarrierFor 65
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 415 930))
+(devCarrierFor 66
+(active open)
+(icon
+(iconImage "loop.icn"))
+(open
+(extent 99 79))
+(pinCenter 130 900))
+(devCarrierFor 68
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 455 260))
+(devCarrierFor 69
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 810 260))
+(devCarrierFor 70
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 790 610))
+(devCarrierFor 71
+(active open)
+(icon)
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 780 710))
+(devCarrierFor 72
+(active icon)
+(icon
+(extent 26 25))
+(open)
+(terminals on)
+(pinCenter -40 480))
+(devCarrierFor 73
+(active icon)
+(icon
+(extent 100 34))
+(open
+(extent 145 80))
+(terminals on)
+(pinCenter -160 540))
+(devCarrierFor 74
+(active icon)
+(icon
+(extent 100 34))
+(open
+(extent 145 80))
+(terminals on)
+(pinCenter -160 480))
+(devCarrierFor 75
+(active open)
+(icon)
+(open
+(extent 54 51))
+(terminals on)
+(pinCenter -145 400))
+(devCarrierFor 77
+(active icon)
+(icon
+(extent 74 25))
+(open
+(extent 197 51))
+(terminals on)
+(pinCenter 690 480))
+(devCarrierFor 78
+(active icon)
+(icon
+(extent 26 25))
+(open)
+(terminals on)
+(pinCenter 930 490))
+(devCarrierFor 80
+(active icon)
+(icon
+(extent 112 15))
+(open
+(extent 221 74))
+(terminals on)
+(pinCenter 820 500))
+(connect D9:2 D0:1
+(points 6 679 80 690 80 690 90 670 90 670 170 690 170))
+(connect D9:1 D1:1
+(points 4 679 60 690 60 690 50 695 50))
+(connect D9:3 D6:1
+(points 2 679 100 690 110))
+(connect D8:0 D9:0
+(points 2 430 0 430 21))
+(connect D4:1 D9:1
+(points 4 99 80 120 80 120 60 180 60))
+(connect D5:1 D9:2
+(points 4 99 140 120 140 120 100 180 100))
+(connect D22:0 D10:0
+(points 2 130 942 130 982))
+(connect D9:0 D11:0
+(points 4 430 120 430 180 50 180 50 221))
+(connect D14:1 D12:1
+(points 6 172 510 190 510 190 500 260 500 260 380 292 380))
+(connect D12:1 D13:1
+(points 2 608 380 637 380))
+(connect D11:1 D14:1
+(points 6 209 270 230 270 230 320 50 320 50 510 68 510))
+(connect D14:1 D15:1
+(points 4 172 510 190 510 190 500 292 500))
+(connect D31:1 D16:0
+(points 5 729 470 740 470 740 430 820 430 820 440))
+(connect D15:1 D16:1
+(points 4 608 500 630 500 630 450 761 450))
+(connect D26:0 D17:0
+(points 2 770 749 770 762))
+(connect D12:1 D17:1
+(points 6 608 380 600 380 600 430 590 430 590 820 617 820))
+(connect D14:0 D18:0
+(points 4 120 552 120 570 100 570 100 592))
+(connect D27:1 D18:1
+(points 6 -25 480 0 480 0 550 -90 550 -90 650 -73 650))
+(connect D18:1 D19:1
+(points 4 273 650 290 650 290 720 325 720))
+(connect D21:1 D20:1
+(points 2 578 930 627 930))
+(connect D22:1 D21:1
+(points 4 182 900 200 900 200 930 262 930))
+(connect D19:0 D22:0
+(points 6 400 830 400 850 310 850 310 820 130 820 130 840))
+(connect D11:1 D22:1
+(points 8 209 270 230 270 230 560 300 560 300 710 60 710 60 900 78 900))
+(connect D14:1 D23:1
+(points 8 172 510 190 510 190 500 260 500 260 380 270 380 270 260 302 260))
+(connect D23:1 D24:1
+(points 2 618 260 647 260))
+(connect D32:1 D25:0
+(points 7 945 490 970 490 970 530 900 530 900 540 780 540 780 552))
+(connect D23:1 D25:1
+(points 8 618 260 630 260 630 440 620 440 620 520 610 520 610 610 627 610))
+(connect D15:1 D26:1
+(points 8 608 500 630 500 630 530 620 530 620 560 600 560 600 710 617 710))
+(connect D29:1 D27:1
+(points 4 -108 480 -90 480 -90 470 -56 470))
+(connect D28:1 D27:2
+(points 4 -108 540 -90 540 -90 490 -56 490))
+(connect D30:2 D28:0
+(points 7 -76 410 -70 410 -70 460 -100 460 -100 510 -160 510 -160 520))
+(connect D30:1 D29:0
+(points 5 -76 390 -60 390 -60 450 -160 450 -160 460))
+(connect D11:1 D30:1
+(points 6 209 270 230 270 230 320 -210 320 -210 400 -205 400))
+(connect D13:0 D31:0
+(points 4 790 419 790 440 690 440 690 465))
+(connect D9:3 D31:1
+(points 9 679 100 679 140 640 140 640 310 620 310 620 430 640 430 640 480 650
+480))
+(connect D16:0 D32:1
+(points 3 820 460 820 480 914 480))
+(connect D33:0 D32:2
+(points 5 820 510 820 530 890 530 890 500 914 500))
+(connect D31:2 D33:0
+(points 5 729 490 740 490 740 480 820 480 820 490))
+(connect D15:1 D33:1
+(points 6 608 500 630 500 630 520 740 520 740 500 761 500)))
+(stackingOrder 3 7 5 4 0 6 1 2 8 9 19 18 14 15 13 12 11 10 22 23 21 20 26 25 17
+24 27 28 29 30 31 16 32 33))
+(numberFormats
+(realFormat standard)
+(realSigDigits 4)
+(realRadixSpec 4)
+(integerBase decimal))))
