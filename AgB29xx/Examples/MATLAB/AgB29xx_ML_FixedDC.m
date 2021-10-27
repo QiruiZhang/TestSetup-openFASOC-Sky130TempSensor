@@ -17,10 +17,11 @@ try
     driver = instrument.driver.AgB29xx();
 
     % Edit resource and options as needed.  Resource is ignored if option Simulate=true
-    resourceDesc = 'GPIB0::23::INSTR';
+    % resourceDesc = 'GPIB0::23::INSTR';
     % resourceDesc = 'TCPIP0::<host_name or IP addr>::INSTR';
-
-    initOptions = 'QueryInstrStatus=true, Simulate=true, DriverSetup= Model=, Trace=false';			
+    resourceDesc = 'USB0::2391::35864::MY51140630::0::INSTR';
+    
+    initOptions = 'QueryInstrStatus=true, Simulate=false, DriverSetup= Model=, Trace=false';			
     idquery = true;
     reset   = true;
 
@@ -44,57 +45,53 @@ try
     end
     disp(blanks(1));
 
+    iNumberOfChannels = driver.DeviceSpecific.Outputs.Count;             
 
-                iNumberOfChannels = driver.DeviceSpecific.Outputs.Count;             
-
-                    for i = 1:iNumberOfChannels                
-                   % Set voltage output to 2.0V
-                        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.AutoRangeEnabled = false;
-                        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.Range = 20.0;
-                        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.Level = 2.0;
-                        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.TriggeredLevel = 2.0;
-                   
+    for i = 1:iNumberOfChannels                
+      % Set voltage output to 2.0V
+        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.AutoRangeEnabled = false;
+        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.Range = 20.0;
+        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.Level = 2.0;
+        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Voltage.TriggeredLevel = 2.0;
                     
-                   % Set auto-range current measurement
-                   strModel = driver.Identity.InstrumentModel;
-                   if(strcmp(strModel,'B2901A') ||strcmp(strModel,'B2902A')||strcmp(strModel,'B2911A') ||strcmp(strModel,'B2912A') || strcmp(strModel,'B2901B') ||strcmp(strModel,'B2902B')||strcmp(strModel,'B2911B') ||strcmp(strModel,'B2912B'))
-                       driver.DeviceSpecific.Measurements.Item(driver.DeviceSpecific.Measurements.Name(i)).Current.AutoRangeEnabled = true;
-                   end
-                    driver.DeviceSpecific.Measurements.Item(driver.DeviceSpecific.Measurements.Name(i)).Current.NPLC = 0.1;
+        % Set auto-range current measurement
+        strModel = driver.Identity.InstrumentModel;
+        if(strcmp(strModel,'B2901A') ||strcmp(strModel,'B2902A')||strcmp(strModel,'B2911A') ||strcmp(strModel,'B2912A') || strcmp(strModel,'B2901B') ||strcmp(strModel,'B2902B')||strcmp(strModel,'B2911B') ||strcmp(strModel,'B2912B'))
+            driver.DeviceSpecific.Measurements.Item(driver.DeviceSpecific.Measurements.Name(i)).Current.AutoRangeEnabled = true;
+        end
+        driver.DeviceSpecific.Measurements.Item(driver.DeviceSpecific.Measurements.Name(i)).Current.NPLC = 0.1;
 
-                   % Turn on output switch
+        % Turn on output switch
+        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Enabled = true;
 
-                    driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Enabled = true;
+    end
 
-                 end
+    % Measure
+    %
+    if iNumberOfChannels == 1  
+        chanlist = '1';
+    else 
+        chanlist = '1,2';
+    end
+    driver.DeviceSpecific.Trigger.Initiate(chanlist);
 
-                % Measure
-                %
-                if iNumberOfChannels == 1  
-                    chanlist = '1';
-                else 
-                    chanlist = '1,2';
-                end
-                driver.DeviceSpecific.Trigger.Initiate(chanlist);
-
-                %
-                % Query Results
+    %
+    % Query Results
                 
-                dResult = driver.DeviceSpecific.Measurements.FetchArrayData(0, '(@1,2)');
-                disp('Fixed DC Data:');
-                for i = 1: length(dResult)
-                    str = sprintf('Item[%d] = %d',i, dResult(i));
-                    disp(str);
-                end
+    dResult = driver.DeviceSpecific.Measurements.FetchArrayData(0, '(@1,2)');
+    disp('Fixed DC Data:');
+    for i = 1: length(dResult)
+        str = sprintf('Item[%d] = %d',i, dResult(i));
+        disp(str);
+    end
 
-                %
-                % Turn off output switch
-                %
-                for i = 1:iNumberOfChannels                
-                    driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Enabled = false;
-                end
-                
-
+    %
+    % Turn off output switch
+    %
+    for i = 1:iNumberOfChannels                
+        driver.DeviceSpecific.Outputs.Item(driver.DeviceSpecific.Outputs.Name(i)).Enabled = false;
+    end
+    
 				
     % Check instrument for errors
     errorNum = -1;
