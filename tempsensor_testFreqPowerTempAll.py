@@ -96,7 +96,7 @@ freq_ref = 32.768 # kHz
 temp_check_step = 30
 temp_win_length = 10
 
-temp_list = range(-10, 121, 10) # degree C
+temp_list = range(120, 61, -10) # degree C
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
 #Supply_list = [(3.0, 1.8)]
 
@@ -120,7 +120,7 @@ for temp in temp_list:
         # Check whether all temperature reads of past N-minutes are settled
         settled = 1
         for T in temp_window:
-            if abs(T-temp) > 0.1:
+            if abs(T-temp) > 0.11:
                 settled = 0
         # Break if temperature settles
         if settled and (len(temp_window) == temp_win_length):
@@ -139,8 +139,12 @@ for temp in temp_list:
                 
         print('\nTesting with VDD=' + str(VDD) + ', VDD1v8=' + str(VDD1v8))
         print('Start testing RingOsc frequencies')
-        ctr_design0 = 14 # 16 * (2^ctr_design0) CLK_REF cycles
-        ctr_design1 = 7  # 16 * (2^ctr_design1) CLK_REF cycles
+        if temp >= 50:
+            ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
+            ctr_design1 = 6  # 16 * (2^ctr_design1) CLK_REF cycles
+        else:
+            ctr_design0 = 14 # 16 * (2^ctr_design0) CLK_REF cycles
+            ctr_design1 = 7  # 16 * (2^ctr_design1) CLK_REF cycles
         dict_freqs = gpio_ts.test_all_freqs(ctr_design0, ctr_design1, temp, freq_ref)
         print('Start testing powers')
         ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
@@ -154,7 +158,12 @@ for temp in temp_list:
         meas_res_path = 'C:/Files/Research/FASoC/TempSensorTesting/MeasResults/ChipNo' + str(ChipNo) + '/'
         res_csv_name = meas_res_path + 'Meas_ChipNo' + str(ChipNo) + '_Vdio' + str(VDD) + 'Vdd' + str(VDD1v8) + '_' + str(temp) + 'C.csv'
         df_meas.to_csv(res_csv_name)
-        
+
+# Set temperature to safe room temperature
+temp_set = tsc.convert_temp_write(20)
+Tchamber.write_register(300, temp_set, 0)  # Registernumber, value, number of decimals for storage
+print('Changed SetPoint Temperature to ' + str(temp) + 'C')
+
 '''
 Test Finished. Reset Chip and Close GPIO Ports
 '''
