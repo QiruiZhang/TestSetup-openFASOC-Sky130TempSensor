@@ -269,6 +269,20 @@ class tempsensorIO():
 Some useful functions
 '''
 
+def convert_temp_read(temp):
+    temp_bin = f'{temp:016b}'
+    if temp_bin[0] == '1': # T < 0C
+        temp = - (2**16 - temp)/10.0
+    else:
+        temp = temp/10.0
+    return temp
+
+def convert_temp_write(temp):
+    if temp < 0: # T < 0C
+        temp_set = 2**16 + temp * 10
+    else:
+        temp_set = temp * 10
+    return temp_set
 
 def twos_comp(val, bits):
     """compute the 2's complement of int value val"""

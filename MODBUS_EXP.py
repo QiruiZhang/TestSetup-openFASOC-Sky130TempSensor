@@ -7,7 +7,7 @@ Created on Thu Oct 28 20:57:47 2021
 
 import minimalmodbus as modbus
 
-Tchamber = modbus.Instrument('COM4', 1)  # port name, slave address (in decimal)
+Tchamber = modbus.Instrument('COM5', 1)  # port name, slave address (in decimal)
 Tchamber.mode = modbus.MODE_RTU
 Tchamber.serial.baudrate = 9600
 
