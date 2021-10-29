@@ -84,7 +84,7 @@ print('')
 Test Frequency and Power for all nodes under a given temperature
 '''
 ChipNo = 2
-temp = -40 # degree C
+temp = -20 # degree C
 freq_ref = 32.768 # kHz
 
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
@@ -112,7 +112,7 @@ for supply in Supply_list:
     df_meas = pd.DataFrame(dict_freqs)
 
     # Save to csv
-    meas_res_path = 'C:/Files/Research/FASoC/TempSensorTesting/MeasResults/'
+    meas_res_path = 'C:/Files/Research/FASoC/TempSensorTesting/MeasResults/ChipNo' + str(ChipNo) + '/'
     res_csv_name = meas_res_path + 'Meas_ChipNo' + str(ChipNo) + '_Vdio' + str(VDD) + 'Vdd' + str(VDD1v8) + '_' + str(temp) + 'C.csv'
     df_meas.to_csv(res_csv_name)
 

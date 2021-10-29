@@ -30,13 +30,18 @@ time.sleep(3)
 
 
 # Measurements
+I_avg = 0
 for i in range(100):
     I_values = B2902A.query_ascii_values(':MEASure:CURRent:DC? (%s)' % ('@1,2'))
     print(I_values)
+    I_avg += I_values[1]
     V_values = B2902A.query_ascii_values(':MEASure:VOLTage:DC? (%s)' % ('@1,2'))
     print(V_values)
     print('')
     time.sleep(0.1)
+
+I_avg /= 100
+print('Average VDD1v8 Current is ' + str(I_avg))
 
 # Turn off the channels
 time.sleep(1)
