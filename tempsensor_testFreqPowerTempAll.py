@@ -29,7 +29,8 @@ import time
 '''
 Connect to TestEquity Temperature Chamber
 '''
-Tchamber = modbus.Instrument('COM5', 1)  # port name, slave address (in decimal)
+Tchamber = modbus.Instrument('COM5', 1)  # Windows: port name, slave address (in decimal)
+#Tchamber = modbus.Instrument('/dev/ttyS5', 1)  # Linux: port name, slave address (in decimal)
 Tchamber.mode = modbus.MODE_RTU
 Tchamber.serial.baudrate = 9600
 
@@ -89,16 +90,17 @@ while opened != 'yes':
 print('')
 
 '''
-Test Frequency and Power for all nodes under a given temperature
+Test Frequency and Power for all 64 nodes across temperatures and voltages
 '''
-ChipNo = 2
-freq_ref = 32.768 # kHz
-temp_check_step = 30
-temp_win_length = 10
+freq_ref = 32.768 # kHz 
+temp_check_step = 30 # Sec
+temp_win_length = 10 
+temp_stab_time  = 60 * 5 # Sec
+ctr_adapt_th = 50 # degree C
 
-temp_list = range(120, 61, -10) # degree C
+ChipNo = 2.1
+temp_list = range(20, 21, 10) # degree C
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
-#Supply_list = [(3.0, 1.8)]
 
 for temp in temp_list:
     # Set temperature and wait for it to settle
@@ -126,30 +128,39 @@ for temp in temp_list:
         if settled and (len(temp_window) == temp_win_length):
             print('Temperature Settled!\n')
             break
+        time.sleep(temp_check_step) # Sleep for some time before next read    
     
-        time.sleep(temp_check_step) # Sleep for 60 sec before next read    
+    time.sleep(temp_stab_time) # Wait some time for temperature of the chip to further stabalize
     
+    # Begin Testing
     for supply in Supply_list: 
+        # Set supply voltages
         VDD = supply[0] # V
         VDD1v8 = supply[1] # V
         B2902A.write(':SOURce1:VOLTage:LEVel:IMMediate:AMPLitude %G' % (VDD))
         B2902A.write(':SOURce2:VOLTage:LEVel:IMMediate:AMPLitude %G' % (VDD1v8))
         B2902A.write(':INITiate:IMMediate:ALL (%s)' % ('@1,2'))
         time.sleep(2)
-                
         print('\nTesting with VDD=' + str(VDD) + ', VDD1v8=' + str(VDD1v8))
+
         print('Start testing RingOsc frequencies')
-        if temp >= 50:
+        if temp >= ctr_adapt_th:
             ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
+            repeat0 = 2
             ctr_design1 = 6  # 16 * (2^ctr_design1) CLK_REF cycles
+            repeat1 = 32
         else:
             ctr_design0 = 14 # 16 * (2^ctr_design0) CLK_REF cycles
+            repeat0 = 1
             ctr_design1 = 7  # 16 * (2^ctr_design1) CLK_REF cycles
-        dict_freqs = gpio_ts.test_all_freqs(ctr_design0, ctr_design1, temp, freq_ref)
+            repeat1 = 16
+        dict_freqs = gpio_ts.test_all_freqs(ctr_design0, ctr_design1, repeat0, repeat1, temp, freq_ref)
+        
         print('Start testing powers')
         ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
         ctr_design1 = 13  # 16 * (2^ctr_design1) CLK_REF cycles
-        dict_powers = gpio_ts.test_all_powers(ctr_design0, ctr_design1, temp, freq_ref, B2902A)
+        meas_step = 0.05 # Sec
+        dict_powers = gpio_ts.test_all_powers(ctr_design0, ctr_design1, meas_step, temp, freq_ref, B2902A)
         
         dict_freqs.update(dict_powers)
         df_meas = pd.DataFrame(dict_freqs)
@@ -159,11 +170,22 @@ for temp in temp_list:
         res_csv_name = meas_res_path + 'Meas_ChipNo' + str(ChipNo) + '_Vdio' + str(VDD) + 'Vdd' + str(VDD1v8) + '_' + str(temp) + 'C.csv'
         df_meas.to_csv(res_csv_name)
 
-# Set temperature to safe room temperature
+'''
+Set temperature to safe room temperature
+'''
 temp_set = tsc.convert_temp_write(20)
 Tchamber.write_register(300, temp_set, 0)  # Registernumber, value, number of decimals for storage
-print('Changed SetPoint Temperature to ' + str(temp) + 'C')
-
+print('Changed SetPoint Temperature to ' + str(20) + 'C')
+while True:
+    # Read real chamber temperature
+    temp_read = Tchamber.read_register(100, 0)  # Registernumber, number of decimals
+    temp_real = tsc.convert_temp_read(temp_read)
+    print('Real Temperature in the chamber is ' + str(temp_real) + 'C')
+    if abs(temp_real - 20) < 5:
+        print('Temperature Safe!\n')
+        break
+    time.sleep(temp_check_step) # Sleep for some time before next read
+    
 '''
 Test Finished. Reset Chip and Close GPIO Ports
 '''

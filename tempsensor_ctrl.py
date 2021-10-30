@@ -104,7 +104,7 @@ class tempsensorIO():
         return ((self.gpio_out1.read()[0] >> 4) << 12) + (self.gpio_out0.read()[0] >> 4)
 
     # Test RO frequency of all 64 designs on a chip
-    def test_all_freqs(self, ctr_design0, ctr_design1, temp, freq_ref):
+    def test_all_freqs(self, ctr_design0, ctr_design1, repeat0, repeat1, temp, freq_ref):
         # initialize columns in the measurement results table
         list_temp = []
         list_design = []
@@ -120,8 +120,10 @@ class tempsensorIO():
             # select input ctr configurations according to design type
             if sel_design == 0:
                 sel_ctr = ctr_design0
+                repeat = repeat0
             else:
                 sel_ctr = ctr_design1
+                repeat = repeat1
             
             for sel_grp in range(8):
                 for sel_inst in range(4):
@@ -134,24 +136,29 @@ class tempsensorIO():
                     self.set_sel_grp(sel_grp)
                     self.set_sel_inst(sel_inst)
                     
-                    # reset chip
-                    self.chip_reset(0)
-                    time.sleep(0.5)
+                    freq_avg = 0
+                    for i in range(repeat):
+                        # reset chip
+                        self.chip_reset(0)
+                        time.sleep(1)
+                        
+                        # release reset
+                        self.chip_reset(1)
+                        
+                        # Wait for done and read dout
+                        while True:
+                            done = self.get_done()
+                            if done:
+                                print("** DONE DETECTED **")
+                                dout = self.get_dout()
+                                print("DOUT result is " + str(dout))
+                                break
                     
-                    # release reset
-                    self.chip_reset(1)
+                        freq = (dout/(16.0*(2**sel_ctr)))*freq_ref/2
+                        freq_avg += freq
                     
-                    # Wait for done and read dout
-                    while True:
-                        done = self.get_done()
-                        if done:
-                            print("** DONE DETECTED **")
-                            dout = self.get_dout()
-                            print("DOUT result is " + str(dout))
-                            break
-                    
-                    freq = (dout/(16.0*(2**sel_ctr)))*freq_ref/2
-                    print("Frequency result is " + str(freq) + " kHz\n")
+                    freq_avg /= repeat
+                    print("Frequency result is " + str(freq_avg) + " kHz\n")
                         
                     list_temp.append(temp)
                     list_design.append(sel_design)
@@ -160,7 +167,7 @@ class tempsensorIO():
                     list_ctr.append(sel_ctr)
                     list_ref.append(freq_ref)
                     list_dout.append(dout)
-                    list_freq.append(freq) # kHz
+                    list_freq.append(freq_avg) # kHz
                             
         dict_meas = {'temp':     list_temp, 
             'design':   list_design, 
@@ -174,7 +181,7 @@ class tempsensorIO():
         return dict_meas
 
     # Test chip current of all 64 designs on a chip
-    def test_all_powers(self, ctr_design0, ctr_design1, temp, freq_ref, SMU):
+    def test_all_powers(self, ctr_design0, ctr_design1, meas_step, temp, freq_ref, SMU):
         # initialize columns in the measurement results table        
         list_VDD = []
         list_Ivdd = []
@@ -205,7 +212,7 @@ class tempsensorIO():
                     
                     # reset chip
                     self.chip_reset(0)
-                    time.sleep(0.5)
+                    time.sleep(1)
                     
                     # Initialize averaged Voltage, Current and Power
                     VDD_avg = 0
@@ -218,7 +225,7 @@ class tempsensorIO():
                     
                     # release reset
                     self.chip_reset(1)
-                    time.sleep(0.5)
+                    time.sleep(1)
 
                     # Wait for done and measure power
                     while True:
@@ -236,7 +243,7 @@ class tempsensorIO():
                             Ivdd1v8_avg += I_values[1]
                             Pvdd1v8_avg += V_values[1] * I_values[1]
                             cnt += 1
-                            time.sleep(0.1)
+                            time.sleep(meas_step)
                     
                     # Calculate average powers
                     VDD_avg /= cnt
