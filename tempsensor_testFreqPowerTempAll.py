@@ -98,8 +98,8 @@ temp_win_length = 10
 temp_stab_time  = 60 * 5 # Sec
 ctr_adapt_th = 50 # degree C
 
-ChipNo = 2.1
-temp_list = range(20, 21, 10) # degree C
+ChipNo = 2.2
+temp_list = range(-40, 121, 10) # degree C
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
 
 for temp in temp_list:
@@ -146,21 +146,22 @@ for temp in temp_list:
         print('Start testing RingOsc frequencies')
         if temp >= ctr_adapt_th:
             ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
-            repeat0 = 2
+            repeat0 = 1
             ctr_design1 = 6  # 16 * (2^ctr_design1) CLK_REF cycles
-            repeat1 = 32
+            repeat1 = 8
         else:
             ctr_design0 = 14 # 16 * (2^ctr_design0) CLK_REF cycles
             repeat0 = 1
             ctr_design1 = 7  # 16 * (2^ctr_design1) CLK_REF cycles
-            repeat1 = 16
+            repeat1 = 8
         dict_freqs = gpio_ts.test_all_freqs(ctr_design0, ctr_design1, repeat0, repeat1, temp, freq_ref)
         
         print('Start testing powers')
         ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
         ctr_design1 = 13  # 16 * (2^ctr_design1) CLK_REF cycles
-        meas_step = 0.05 # Sec
-        dict_powers = gpio_ts.test_all_powers(ctr_design0, ctr_design1, meas_step, temp, freq_ref, B2902A)
+        meas_step = 0.00 # Sec
+        pmeas = 0.3
+        dict_powers = gpio_ts.test_all_powers(ctr_design0, ctr_design1, meas_step, pmeas, temp, freq_ref, B2902A)
         
         dict_freqs.update(dict_powers)
         df_meas = pd.DataFrame(dict_freqs)

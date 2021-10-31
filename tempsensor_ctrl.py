@@ -169,27 +169,24 @@ class tempsensorIO():
                     list_dout.append(dout)
                     list_freq.append(freq_avg) # kHz
                             
-        dict_meas = {'temp':     list_temp, 
-            'design':   list_design, 
-            'group':    list_grp,
-            'inst':     list_inst,
-            'CTR':      list_ctr,
-            'FreqRef (kHz)':  list_ref,
-            'DOUT':     list_dout,
-            'Freq (kHz)':     list_freq}  
+        dict_meas = {
+            'temp':             list_temp, 
+            'design':           list_design, 
+            'group':            list_grp,
+            'inst':             list_inst,
+            'CTR':              list_ctr,
+            'FreqRef (kHz)':    list_ref,
+            'DOUT':             list_dout,
+            'Freq (kHz)':       list_freq
+        }  
        
         return dict_meas
 
     # Test chip current of all 64 designs on a chip
-    def test_all_powers(self, ctr_design0, ctr_design1, meas_step, temp, freq_ref, SMU):
+    def test_all_powers(self, ctr_design0, ctr_design1, meas_step, pmeas, temp, freq_ref, SMU):
         # initialize columns in the measurement results table        
-        list_VDD = []
         list_Ivdd = []
-        list_Pvdd = []
-
-        list_VDD1v8 = []
         list_Ivdd1v8 = []
-        list_Pvdd1v8 = []
         
         # Start looping all the 64 designs in a chip under a given temperature
         for sel_design in range(2):
@@ -215,13 +212,10 @@ class tempsensorIO():
                     time.sleep(1)
                     
                     # Initialize averaged Voltage, Current and Power
-                    VDD_avg = 0
+                    Ivdd_rec = []
                     Ivdd_avg = 0
-                    Pvdd_avg = 0
-                    VDD1v8_avg = 0
+                    Ivdd1v8_rec = []
                     Ivdd1v8_avg = 0
-                    Pvdd1v8_avg = 0
-                    cnt = 0
                     
                     # release reset
                     self.chip_reset(1)
@@ -230,44 +224,28 @@ class tempsensorIO():
                     # Wait for done and measure power
                     while True:
                         I_values = SMU.query_ascii_values(':MEASure:CURRent:DC? (%s)' % ('@1,2'))
-                        V_values = SMU.query_ascii_values(':MEASure:VOLTage:DC? (%s)' % ('@1,2'))
                         done = self.get_done()
                         if done:
                             print("** DONE DETECTED **")
                             break
                         else:
-                            VDD_avg += V_values[0]
-                            Ivdd_avg += I_values[0]
-                            Pvdd_avg += V_values[0] * I_values[0]
-                            VDD1v8_avg += V_values[1]
-                            Ivdd1v8_avg += I_values[1]
-                            Pvdd1v8_avg += V_values[1] * I_values[1]
-                            cnt += 1
+                            Ivdd_rec.append(I_values[0])
+                            Ivdd1v8_rec.append(I_values[0])
                             time.sleep(meas_step)
                     
                     # Calculate average powers
-                    VDD_avg /= cnt
-                    Ivdd_avg /= cnt
-                    Pvdd_avg /= cnt
-                    VDD1v8_avg /= cnt
-                    Ivdd1v8_avg /= cnt
-                    Pvdd1v8_avg /= cnt
+                    win_meas_len = len(Ivdd_rec)
+                    win_stable_len = int(len(Ivdd_rec)*pmeas)
+                    Ivdd_avg = sum(Ivdd_rec[(win_meas_len-win_stable_len):win_meas_len])/win_stable_len
+                    Ivdd1v8_avg = sum(Ivdd1v8_rec[(win_meas_len-win_stable_len):win_meas_len])/win_stable_len
                     print("VDD1v8 current is " + str(Ivdd1v8_avg*1e6) + " uA\n")
 
-                    list_VDD.append(VDD_avg)
                     list_Ivdd.append(Ivdd_avg)
-                    list_Pvdd.append(Pvdd_avg)
-                    list_VDD1v8.append(VDD1v8_avg)
                     list_Ivdd1v8.append(Ivdd1v8_avg)
-                    list_Pvdd1v8.append(Pvdd1v8_avg)
 
         dict_meas = {
-            'VDD (V)':      list_VDD, 
             'Ivdd (A)':     list_Ivdd, 
-            'Pvdd (W)':     list_Pvdd,
-            'VDD1v8 (V)':   list_VDD1v8,
-            'Ivdd1v8 (A)':  list_Ivdd1v8,
-            'Pvdd1v8 (W)':  list_Pvdd1v8
+            'Ivdd1v8 (A)':  list_Ivdd1v8
         }  
        
         return dict_meas
