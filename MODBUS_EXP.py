@@ -7,7 +7,7 @@ Created on Thu Oct 28 20:57:47 2021
 
 import minimalmodbus as modbus
 
-Tchamber = modbus.Instrument('COM5', 1)  # port name, slave address (in decimal)
+Tchamber = modbus.Instrument('COM1', 1)  # port name, slave address (in decimal)
 Tchamber.mode = modbus.MODE_RTU
 Tchamber.serial.baudrate = 9600
 
@@ -29,7 +29,7 @@ else:
     temperature = temperature/10.0
 print('SetPoint Temperature is ' + str(temperature))
 
-new_temp = -10
+new_temp = 25
 if new_temp < 0: # T < 0C
     set_point = 2**16 + new_temp * 10
 else:

@@ -29,7 +29,7 @@ import time
 '''
 Connect to TestEquity Temperature Chamber
 '''
-Tchamber = modbus.Instrument('COM5', 1)  # Windows: port name, slave address (in decimal)
+Tchamber = modbus.Instrument('COM1', 1)  # Windows: port name, slave address (in decimal)
 #Tchamber = modbus.Instrument('/dev/ttyS5', 1)  # Linux: port name, slave address (in decimal)
 Tchamber.mode = modbus.MODE_RTU
 Tchamber.serial.baudrate = 9600
@@ -98,8 +98,8 @@ temp_win_length = 10
 temp_stab_time  = 60 * 5 # Sec
 ctr_adapt_th = 50 # degree C
 
-ChipNo = 2.2
-temp_list = range(-20, 121, 10) # degree C
+ChipNo = 3
+temp_list = range(-40, 121, 10) # degree C
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
 
 for temp in temp_list:
