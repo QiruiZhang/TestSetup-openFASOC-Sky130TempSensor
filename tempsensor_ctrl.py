@@ -230,7 +230,7 @@ class tempsensorIO():
                             break
                         else:
                             Ivdd_rec.append(I_values[0])
-                            Ivdd1v8_rec.append(I_values[0])
+                            Ivdd1v8_rec.append(I_values[1])
                             time.sleep(meas_step)
                     
                     # Calculate average powers

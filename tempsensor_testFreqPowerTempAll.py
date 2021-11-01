@@ -99,7 +99,7 @@ temp_stab_time  = 60 * 5 # Sec
 ctr_adapt_th = 50 # degree C
 
 ChipNo = 2.2
-temp_list = range(-40, 121, 10) # degree C
+temp_list = range(-20, 121, 10) # degree C
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
 
 for temp in temp_list:
