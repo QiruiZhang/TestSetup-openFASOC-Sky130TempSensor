@@ -141,7 +141,7 @@ Reset Release
 '''
 # Testing Parameters
 freq_ref = 32.768 # kHz
-meas_step = 0.00 # Sec
+meas_step = 0.05 # Sec
 
 # reset chip
 gpio_ts.chip_reset(0)
@@ -156,6 +156,10 @@ Ivdd1v8_avg = 0
 Pvdd1v8_avg = 0
 cnt = 0
 
+#print('Waiting for test result......')
+Ivdd_rec = []
+Ivdd1v8_rec = []
+
 # Release Chip Reset
 release = 'no'
 while release != 'yes':
@@ -168,10 +172,6 @@ time.sleep(1)
 '''
 Wait for DONE and report DOUT
 '''
-#print('Waiting for test result......')
-Ivdd_rec = []
-Ivdd1v8_rec = []
-
 # Try to settle measurement first
 #for i in range(120):
 #    I_values = B2902A.query_ascii_values(':MEASure:CURRent:DC? (%s)' % ('@1,2'))
@@ -204,7 +204,7 @@ print("Frequency result is " + str(freq) + " kHz\n")
 # Calculate average powers
 #cnt -= 10
 win_meas_len = len(Ivdd_rec)
-win_stable_len = int(len(Ivdd_rec)/3)
+win_stable_len = int(len(Ivdd_rec)*0.3)
 Ivdd_avg = sum(Ivdd_rec[(win_meas_len-win_stable_len):win_meas_len])/win_stable_len
 #Pvdd_avg /= cnt
 Ivdd1v8_avg = sum(Ivdd1v8_rec[(win_meas_len-win_stable_len):win_meas_len])/win_stable_len

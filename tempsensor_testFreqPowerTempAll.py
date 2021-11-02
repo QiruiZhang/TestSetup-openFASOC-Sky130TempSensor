@@ -167,7 +167,7 @@ for temp in temp_list:
         df_meas = pd.DataFrame(dict_freqs)
         
         # Save to csv
-        meas_res_path = 'C:/Files/Research/FASoC/TempSensorTesting/MeasResults/ChipNo' + str(ChipNo) + '/'
+        meas_res_path = './MeasResults/ChipNo' + str(ChipNo) + '/'
         res_csv_name = meas_res_path + 'Meas_ChipNo' + str(ChipNo) + '_Vdio' + str(VDD) + 'Vdd' + str(VDD1v8) + '_' + str(temp) + 'C.csv'
         df_meas.to_csv(res_csv_name)
 
