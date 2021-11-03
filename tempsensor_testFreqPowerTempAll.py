@@ -99,7 +99,7 @@ temp_stab_time  = 60 * 5 # Sec
 ctr_adapt_th = 50 # degree C
 
 ChipNo = 3
-temp_list = range(-40, 121, 10) # degree C
+temp_list = range(20, 121, 10) # degree C
 Supply_list = [(3.0, 1.8), (3.0, 1.2)]
 
 for temp in temp_list:
@@ -107,6 +107,7 @@ for temp in temp_list:
     temp_set = tsc.convert_temp_write(temp)
     Tchamber.write_register(300, temp_set, 0)  # Registernumber, value, number of decimals for storage
     print('Changed SetPoint Temperature to ' + str(temp) + 'C')
+    time.sleep(temp_check_step)
     temp_window = []
     while True:
         # Read real chamber temperature
@@ -177,6 +178,7 @@ Set temperature to safe room temperature
 temp_set = tsc.convert_temp_write(20)
 Tchamber.write_register(300, temp_set, 0)  # Registernumber, value, number of decimals for storage
 print('Changed SetPoint Temperature to ' + str(20) + 'C')
+time.sleep(temp_check_step)
 while True:
     # Read real chamber temperature
     temp_read = Tchamber.read_register(100, 0)  # Registernumber, number of decimals
