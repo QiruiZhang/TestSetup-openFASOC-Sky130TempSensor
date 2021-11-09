@@ -10,11 +10,38 @@ Multiple classes for controlling Sky130TempSensor I/Os through FT232H
 from pyftdi.gpio import GpioMpsseController
 import time
 
-# GPIO Board USB addresses
+'''
+GPIO Board USB addresses
+'''
 gpio_in_addr = "ftdi://ftdi:232h:00:fd/1" # {SEL_INST[1:0], SEL_GRP[2:0], SEL_DESIGN, SEL_CTR[3:0], RESET_REGn} = {C7:C0, D7:D5}
 gpio_out1_addr = "ftdi://ftdi:232h:00:fe/1" # {C7:C0, D7:D4} = DOUT[23:12] 
 gpio_out0_addr = "ftdi://ftdi:232h:00:ff/1" # {C7:C0, D7:D3} = {DOUT[11:0], DONE}
 
+'''
+Conversion Time and Repeat-sampling LUT for different Design Groups
+'''
+CTR_LUT = [
+        6, # design0, grp0
+        6, # design0, grp1
+        6, # design0, grp2
+        6, # design0, grp3
+        7, # design0, grp4
+        7, # design0, grp5
+        7, # design0, grp6
+        7, # design0, grp7
+        0, # design1, grp0
+        0, # design1, grp1
+        0, # design1, grp2
+        0, # design1, grp3
+        0, # design1, grp4
+        0, # design1, grp5
+        0, # design1, grp6
+        0, # design1, grp7
+    ]
+
+'''
+The Temperature Sensor Chip Control Class
+'''
 class tempsensorIO():
     def __init__(self, input_addr_url, out1_addr_url, out0_addr_url, freq):
         self.input_url = input_addr_url
@@ -168,6 +195,82 @@ class tempsensorIO():
                     list_ref.append(freq_ref)
                     list_dout.append(dout)
                     list_freq.append(freq_avg) # kHz
+                            
+        dict_meas = {
+            'temp':             list_temp, 
+            'design':           list_design, 
+            'group':            list_grp,
+            'inst':             list_inst,
+            'CTR':              list_ctr,
+            'FreqRef (kHz)':    list_ref,
+            'DOUT':             list_dout,
+            'Freq (kHz)':       list_freq
+        }  
+       
+        return dict_meas
+
+    # Test RO frequency of all 64 designs on a chip
+    def test_all_freqs_wlut(self, repeat, temp, freq_ref):
+        # initialize columns in the measurement results table
+        list_temp = []
+        list_design = []
+        list_grp = []
+        list_inst = []
+        list_ctr = []
+        list_ref = []
+        list_dout = []
+        list_freq = []
+        
+        # Start looping all the 64 designs in a chip under a given temperature
+        for sel_design in range(2):
+            # select input ctr configurations according to design type
+            for sel_grp in range(8):
+                sel_ctr = CTR_LUT[sel_design*8 + sel_grp]
+                for sel_inst in range(4):
+                    print("Testing temperature sensor node " + str(sel_design) + '.' + str(sel_grp) + '.' + str(sel_inst))
+                    # print("Conversion Time is " + str(32.0*(2**sel_ctr)/freq_ref) + 'ms')
+                    # Set CTR
+                    self.set_sel_ctr(sel_ctr)
+    
+                    # Select design
+                    self.set_sel_design(sel_design)
+                    self.set_sel_grp(sel_grp)
+                    self.set_sel_inst(sel_inst)
+                    time.sleep(0.2)
+
+                    dout_avg = 0
+                    for i in range(repeat):
+                        # reset chip
+                        self.chip_reset(0)
+                        time.sleep(0.1)
+                        
+                        # release reset
+                        self.chip_reset(1)
+                        
+                        # Wait for done and read dout
+                        while True:
+                            done = self.get_done()
+                            if done:
+                                #print("** DONE DETECTED **")
+                                dout = self.get_dout()
+                                #print("DOUT result is " + str(dout))
+                                break
+                    
+                        dout_avg += dout
+                    
+                    dout_avg /= repeat
+                    freq = (dout_avg/(32.0*(2**sel_ctr)))*freq_ref
+
+                    print("Frequency result is " + str(freq) + " kHz\n")
+                        
+                    list_temp.append(temp)
+                    list_design.append(sel_design)
+                    list_grp.append(sel_grp)
+                    list_inst.append(sel_inst)
+                    list_ctr.append(sel_ctr)
+                    list_ref.append(freq_ref)
+                    list_dout.append(dout)
+                    list_freq.append(freq) # kHz
                             
         dict_meas = {
             'temp':             list_temp, 
