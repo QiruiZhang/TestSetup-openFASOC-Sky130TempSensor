@@ -98,7 +98,7 @@ temp_win_length = 10
 temp_stab_time  = 60 * 1 # Sec
 itr = 1
 
-ChipNo = 21 # QP Tech. Ones starts from 11
+ChipNo = 23 # QP Tech. Ones starts from 11
 temp_list = range(-40, 121, 10) # degree C
 Supply_list = [(3.0, 1.8)]
 
