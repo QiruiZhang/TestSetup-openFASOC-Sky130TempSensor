@@ -99,7 +99,7 @@ temp_stab_time  = 60 * 1 # Sec
 itr = 1
 
 ChipNo = 24 # QP Tech. Ones starts from 11
-temp_list = range(-40, 121, 10) # degree C
+temp_list = range(100, 121, 10) # degree C
 Supply_list = [(3.0, 1.8)]
 
 stime = time.time()

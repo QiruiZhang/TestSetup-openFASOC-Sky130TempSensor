@@ -286,25 +286,18 @@ class tempsensorIO():
         return dict_meas
 
     # Test chip current of all 64 designs on a chip
-    def test_all_powers(self, ctr_design0, ctr_design1, meas_step, pmeas, temp, freq_ref, SMU):
+    def test_all_powers(self, ctr, meas_step, pmeas, temp, freq_ref, SMU):
         # initialize columns in the measurement results table        
         list_Ivdd = []
         list_Ivdd1v8 = []
         
+        # Set CTR
+        self.set_sel_ctr(ctr)
         # Start looping all the 64 designs in a chip under a given temperature
         for sel_design in range(2):
-            # select input ctr configurations according to design type
-            if sel_design == 0:
-                sel_ctr = ctr_design0
-            else:
-                sel_ctr = ctr_design1
-            
             for sel_grp in range(8):
                 for sel_inst in range(4):
                     print("Testing temperature sensor node " + str(sel_design) + '.' + str(sel_grp) + '.' + str(sel_inst))
-                    # Set CTR
-                    self.set_sel_ctr(sel_ctr)
-    
                     # Select design
                     self.set_sel_design(sel_design)
                     self.set_sel_grp(sel_grp)

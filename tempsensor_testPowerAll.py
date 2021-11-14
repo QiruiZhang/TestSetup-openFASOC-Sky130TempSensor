@@ -22,7 +22,6 @@ Import Libraries
 import tempsensor_ctrl as tsc
 from tempsensor_ctrl import tempsensorIO as ts_ctrl
 import pandas as pd
-import time
 import pyvisa as pvisa
 
 '''
@@ -43,7 +42,7 @@ B2902A.write(':SOURce2:VOLTage:LEVel:IMMediate:AMPLitude %G' % (VDD1v8))
 
 # Set Current Limits
 I_VDD_limit = 0.1 # A
-I_VDD1v8_limit = 0.01 #A
+I_VDD1v8_limit = 0.0001 # 100uA
 B2902A.write(':SENSe1:CURRent:DC:PROTection:LEVel %G' % (I_VDD_limit))
 B2902A.write(':SENSe2:CURRent:DC:PROTection:LEVel %G' % (I_VDD1v8_limit))
 
@@ -83,18 +82,19 @@ print('')
 '''
 Test Power for all nodes under a given temperature
 '''
-ChipNo = 2
-temp = -40 # degree C
+ChipNo = 25
+temp = 20 # degree C
 freq_ref = 32.768 # kHz
-ctr_design0 = 13 # 16 * (2^ctr_design0) CLK_REF cycles
-ctr_design1 = 13  # 16 * (2^ctr_design1) CLK_REF cycles
+ctr = 13 # 8s conversion time
+meas_step = 0.00 # s
+pmeas = 0.3 # only use tail-30% samples
 
-dict_meas = gpio_ts.test_all_powers(ctr_design0, ctr_design1, temp, freq_ref, B2902A)
+dict_meas = gpio_ts.test_all_powers(ctr, meas_step, pmeas, temp, freq_ref, B2902A)
 df_meas = pd.DataFrame(dict_meas) 
 
 # Save to csv
-meas_res_path = 'C:/Files/Research/FASoC/TempSensorTesting/MeasResults/'
-res_csv_name = meas_res_path + 'Powers_ChipNo' + str(ChipNo) + '_' + str(temp) + 'C.csv'
+meas_res_path = './MeasResults/Power/'
+res_csv_name = meas_res_path + 'Meas_ChipNo' + str(ChipNo) + '_Vdio' + str(VDD) + 'Vdd' + str(VDD1v8) + '_' + str(temp) + 'C.csv'
 df_meas.to_csv(res_csv_name)
 
 '''
