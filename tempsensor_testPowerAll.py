@@ -82,7 +82,7 @@ print('')
 '''
 Test Power for all nodes under a given temperature
 '''
-ChipNo = 25
+ChipNo = 10
 temp = 20 # degree C
 freq_ref = 32.768 # kHz
 ctr = 13 # 8s conversion time
