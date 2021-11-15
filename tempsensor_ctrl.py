@@ -9,6 +9,7 @@ Multiple classes for controlling Sky130TempSensor I/Os through FT232H
 
 from pyftdi.gpio import GpioMpsseController
 import time
+import numpy as np
 
 '''
 GPIO Board USB addresses
@@ -285,6 +286,87 @@ class tempsensorIO():
        
         return dict_meas
 
+    # Test RO frequency of all 64 designs on a chip
+    def test_all_res_wlut(self, repeat, ctr2, temp, freq_ref):
+        # initialize columns in the measurement results table
+        list_ctr1 = []
+        list_ctr2 = []
+        list_ref = []
+        list_res1 = [] # res1 uses the same conversion time for inaccuracy testing 
+        list_res2 = [] # res2 uses a common conversion time across all designs
+        
+        # Start looping all the 64 designs in a chip under a given temperature
+        for sel_design in range(2):
+            # select input ctr configurations according to design type
+            for sel_grp in range(8):
+                sel_ctr = CTR_LUT[sel_design*8 + sel_grp]
+                for sel_inst in range(4):
+                    print("Testing temperature sensor node " + str(sel_design) + '.' + str(sel_grp) + '.' + str(sel_inst))
+
+                    # Select design
+                    self.set_sel_design(sel_design)
+                    self.set_sel_grp(sel_grp)
+                    self.set_sel_inst(sel_inst)
+                    time.sleep(0.1)
+
+                    # Set CTR1
+                    self.set_sel_ctr(sel_ctr)
+                    time.sleep(0.1)
+                    dout_list = []
+                    for i in range(repeat):
+                        # reset chip
+                        self.chip_reset(0)
+                        time.sleep(0.05)
+                        # release reset
+                        self.chip_reset(1)
+                        # Wait for done and read dout
+                        while True:
+                            done = self.get_done()
+                            if done:
+                                dout = self.get_dout()
+                                break
+                        dout_list.append(dout)
+                    dout_std = np.std(dout_list)
+                    freq_std1 = (dout_std/(32.0*(2**sel_ctr)))*freq_ref
+                    print("Frequency resolution-1 is " + str(freq_std1) + " kHz")
+                        
+                    # Set CTR2
+                    self.set_sel_ctr(ctr2)
+                    time.sleep(0.1)
+                    dout_list = []
+                    for i in range(repeat):
+                        # reset chip
+                        self.chip_reset(0)
+                        time.sleep(0.05)       
+                        # release reset
+                        self.chip_reset(1)                       
+                        # Wait for done and read dout
+                        while True:
+                            done = self.get_done()
+                            if done:
+                                dout = self.get_dout()
+                                break
+                        dout_list.append(dout)
+                    dout_std = np.std(dout_list)
+                    freq_std2 = (dout_std/(32.0*(2**ctr2)))*freq_ref
+                    print("Frequency resolution-2 is " + str(freq_std2) + " kHz\n")
+                    
+                    list_ctr1.append(sel_ctr)
+                    list_ctr2.append(ctr2)
+                    list_ref.append(freq_ref)
+                    list_res1.append(freq_std1) # kHz
+                    list_res2.append(freq_std2) # kHz
+                            
+        dict_meas = {
+            'CTR1':             list_ctr1,
+            'CTR2':             list_ctr2,
+            'FreqRef (kHz)':    list_ref,
+            'Res1 (kHz)':       list_res1,
+            'Res2 (kHz)':       list_res2
+        }  
+       
+        return dict_meas
+
     # Test chip current of all 64 designs on a chip
     def test_all_powers(self, ctr, meas_step, pmeas, temp, freq_ref, SMU):
         # initialize columns in the measurement results table        
@@ -295,6 +377,51 @@ class tempsensorIO():
         self.set_sel_ctr(ctr)
         # Start looping all the 64 designs in a chip under a given temperature
         for sel_design in range(2):
+            # Adaptive current measurement limits
+            if sel_design == 0:
+                I_VDD1v8_limit = 0.00001 # 10uA
+            else:
+                I_VDD1v8_limit = 0.0001 # 100uA
+            SMU.write(':SENSe2:CURRent:DC:PROTection:LEVel %G' % (I_VDD1v8_limit))
+            SMU.write(':INITiate:IMMediate:ALL (%s)' % ('@1,2'))
+            time.sleep(10)
+
+            # Dummy Test to heat-up SMU
+            print("Dummy Test!")
+                # Select design
+            self.set_sel_design(sel_design)
+            self.set_sel_grp(0)
+            self.set_sel_inst(0)
+                # reset chip
+            self.chip_reset(0)
+            time.sleep(1)
+                # Initialize averaged Voltage, Current and Power
+            Ivdd_rec = []
+            Ivdd_avg = 0
+            Ivdd1v8_rec = []
+            Ivdd1v8_avg = 0
+                # release reset
+            self.chip_reset(1)
+            time.sleep(1)
+                # Wait for done and measure power
+            while True:
+                I_values = SMU.query_ascii_values(':MEASure:CURRent:DC? (%s)' % ('@1,2'))
+                done = self.get_done()
+                if done:
+                    print("** DONE DETECTED **")
+                    break
+                else:
+                    Ivdd_rec.append(I_values[0])
+                    Ivdd1v8_rec.append(I_values[1])
+                    time.sleep(meas_step)        
+            # Calculate average powers
+            win_meas_len = len(Ivdd_rec)
+            win_stable_len = int(len(Ivdd_rec)*pmeas)
+            Ivdd_avg = sum(Ivdd_rec[(win_meas_len-win_stable_len):win_meas_len])/win_stable_len
+            Ivdd1v8_avg = sum(Ivdd1v8_rec[(win_meas_len-win_stable_len):win_meas_len])/win_stable_len
+            print("VDD1v8 dummy current is " + str(Ivdd1v8_avg*1e6) + " uA\n")
+
+            # Formal Test
             for sel_grp in range(8):
                 for sel_inst in range(4):
                     print("Testing temperature sensor node " + str(sel_design) + '.' + str(sel_grp) + '.' + str(sel_inst))
