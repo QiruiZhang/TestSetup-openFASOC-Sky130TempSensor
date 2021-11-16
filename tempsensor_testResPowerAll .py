@@ -92,7 +92,7 @@ print('')
 '''
 Test Resolution and Power for all nodes under a given temperature
 '''
-ChipNo = 18
+ChipNo = 20
 freq_ref = 32.768 # kHz
 temp = 20 # degree C
 temp_check_step = 12 # Sec
