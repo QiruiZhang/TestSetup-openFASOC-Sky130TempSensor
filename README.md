@@ -14,7 +14,7 @@ Please install the latest version of [Anaconda](https://www.anaconda.com/product
 ### 1.3 **Daughter Board for the Chip**
 The daughter board could be as simple as one that directly connects all the chip I/Os to headers and power supplies to SMA or banana connectors. No level conversion should be needed as the chip uses 3.3V I/O voltage. It is suggested to use 64-pin ceramic PGA packages for packaging the dice and a Zero-Insertion-Force (ZIF) socket for holding the chip. The daughter board designed for validating this setup is shown below as a reference:
 
-![Top view of daughter board](PCBtop.png | width=200)
+![Top view of daughter board]<img src="PCBtop.png" width="400" height="790">
 
 **Fig. 1. Top view of the daughter board**
 
