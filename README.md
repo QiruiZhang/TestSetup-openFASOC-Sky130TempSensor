@@ -12,7 +12,9 @@ A host computer with Windows 10 operating system is required. Either desktop or 
 Please install the latest version of [Anaconda](https://www.anaconda.com/products/individual) (Python3) and use Spyder for running the test scripts.
 
 ### 1.3 **Daughter Board for the Chip**
-The daughter board could be as simple as one that directly connects all the chip I/Os to headers and power supplies to SMA or banana connectors. No level conversion should be needed as the chip uses 3.3V I/O voltage. It is suggested to use 64-pin ceramic PGA packages for packaging the dice and a Zero-Insertion-Force (ZIF) socket for holding the chip. The PCB used for validating this setup is shown below as a reference:
+The daughter board could be as simple as one that directly connects all the chip I/Os to headers and power supplies to SMA or banana connectors. No level conversion should be needed as the chip uses 3.3V I/O voltage. It is suggested to use 64-pin ceramic PGA packages for packaging the dice and a Zero-Insertion-Force (ZIF) socket for holding the chip. The daughter board designed for validating this setup is shown below as a reference:
+
+![Top view of daughter board](PCBtop.png)
 
 
 ### 1.4 **FT232H USB-GPIO Bridge**
