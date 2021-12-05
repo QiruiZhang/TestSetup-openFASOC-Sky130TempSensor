@@ -8,8 +8,17 @@ This repository provides a fully open-source test setup solution for a temperatu
 ### 1.1 **Host Computer**
 A host computer with Windows 10 operating system is required. Either desktop or laptop should work.
 
-### 1.2. **Python**
+### 1.2 **Python**
 Please install the latest version of [Anaconda](https://www.anaconda.com/products/individual) (Python3) and use Spyder for running the test scripts.
+
+### 1.3 **FT232H USB-GPIO Bridge**
+Three FT232H USB-GPIO bridge boards from AdaFruit are needed in this setup for controlling the chip. Please purchase them online from Adafruit. After getting the boards, follow this [page](https://learn.adafruit.com/circuitpython-on-any-computer-with-ft232h/windows) to install driver for the boards using Zadig. Note: you only need to follow the "Plug in FT232H & Fix Driver with Zadig" part on this page, as we do not use the boards in the same way as they suggest.
+
+After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb libraries:
+```
+    pip install pyftdi
+    pip install pyusb
+```
 
 ## 2. Build Explicit VINS-Fusion
 Clone the repository and catkin_make:
