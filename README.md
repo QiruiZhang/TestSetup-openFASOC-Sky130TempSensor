@@ -5,9 +5,8 @@ This repository provides a fully open-source test setup solution for a temperatu
 **Author:** [Qirui Zhang](https://www.linkedin.com/in/cary-qirui-zhang/) from the [University of Michigan, Ann Arbor](https://micl.engin.umich.edu/)
 
 ## 1. Prerequisites
-### 1.1 **Ubuntu** and **ROS**
-Ubuntu 64-bit 16.04 or 18.04.
-ROS Kinetic or Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
+### 1.1 **Host Computer**
+A host computer with Windows10 operating system is required. Either desktop or laptop should work.
 
 ### 1.2. **Ceres Solver**
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
