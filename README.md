@@ -17,6 +17,8 @@ The daughter board could be as simple as one that directly connects all the chip
 <img src="PCBtop.png" width="600">
 Fig. 1. Top view of the daughter board
 
+
+
 <img src="PCBbot.png" width="600">
 Fig. 2. Bottom view of the daughter board
 
