@@ -17,7 +17,7 @@ The daughter board could be as simple as one that directly connects all the chip
 
 <img src="PCBtop.png" width="600">
 Fig. 1. Top view of the daughter board
-<br /> <br /> <br />
+<br /><br />
 <img src="PCBbot.png" width="600">
 Fig. 2. Bottom view of the daughter board
 
@@ -31,7 +31,10 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
 ```
 
 ### 2.3 **Temperature Chamber**
-Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/RS-232-F4-resources) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. 
+Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/RS-232-F4-resources) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using a RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
+```
+    pip install minimalmodbus
+```
 
 ### 2.4 **Source and Measurement Unit**
 
