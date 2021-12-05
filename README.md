@@ -1,4 +1,4 @@
-# openFASOC Temperature Sensor Chip in SkyWater 130nm: Test Setup
+# openFASOC Temperature Sensors in SkyWater 130nm: Test Setup
 
 This repository provides a fully open-source test setup solution for a temperature sensor chip taped-out in SkyWater 130nm with 64 openFASOC-generated temperature sensor instances. The setup is highly automated with Python and open-source libraries, where the chip is controled through low-cost commercially-available USB devices, and control of testing equipments like temperature chambers and source meters is also seamlessly embedded in the test flow using Python. 
 
