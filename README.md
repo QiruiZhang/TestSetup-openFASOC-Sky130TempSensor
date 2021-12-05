@@ -31,10 +31,12 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
 ```
 
 ### 2.3 **Temperature Chamber**
-Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/RS-232-F4-resources) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using a RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
+Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
 ```
     pip install minimalmodbus
 ```
+
+After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you need to purchase a USB-to-RS232 converter, which is commonly available on Amazon.
 
 ### 2.4 **Source and Measurement Unit**
 
