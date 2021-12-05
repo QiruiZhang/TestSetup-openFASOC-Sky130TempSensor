@@ -11,7 +11,11 @@ A host computer with Windows 10 operating system is required. Either desktop or 
 ### 1.2 **Python**
 Please install the latest version of [Anaconda](https://www.anaconda.com/products/individual) (Python3) and use Spyder for running the test scripts.
 
-### 1.3 **FT232H USB-GPIO Bridge**
+### 1.3 **Daughter Board for the Chip**
+The daughter board could be as simple as one that directly connects all the chip I/Os to headers and power supplies to SMA or banana connectors. No level conversion should be needed as the chip uses 3.3V I/O voltage. It is suggested to use 64-pin ceramic PGA packages for packaging the dice and a Zero-Insertion-Force (ZIF) socket for holding the chip. The PCB used for validating this setup is shown below as a reference:
+
+
+### 1.4 **FT232H USB-GPIO Bridge**
 Three FT232H USB-GPIO bridge boards from AdaFruit are needed in this setup for controlling the chip. Please purchase them online from Adafruit. After getting the boards, follow this [page](https://learn.adafruit.com/circuitpython-on-any-computer-with-ft232h/windows) to install driver for the boards using Zadig. Note: you only need to follow the "Plug in FT232H & Fix Driver with Zadig" part on this page, as we do not use the boards in the same way as they suggest.
 
 After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb libraries:
@@ -19,6 +23,8 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
     pip install pyftdi
     pip install pyusb
 ```
+
+
 
 ## 2. Build Explicit VINS-Fusion
 Clone the repository and catkin_make:
