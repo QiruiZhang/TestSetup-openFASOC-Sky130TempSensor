@@ -6,10 +6,10 @@ This repository provides a fully open-source test setup solution for a temperatu
 
 ## 1. Prerequisites
 ### 1.1 **Host Computer**
-A host computer with Windows10 operating system is required. Either desktop or laptop should work.
+A host computer with Windows 10 operating system is required. Either desktop or laptop should work.
 
-### 1.2. **Ceres Solver**
-Follow [Ceres Installation](http://ceres-solver.org/installation.html).
+### 1.2. **Python**
+Please install the latest version of [Anaconda](https://www.anaconda.com/products/individual) (Python3) and use Spyder for running the test scripts.
 
 ## 2. Build Explicit VINS-Fusion
 Clone the repository and catkin_make:
