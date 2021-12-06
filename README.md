@@ -9,7 +9,7 @@ This repository provides a fully open-source test setup solution for a temperatu
 A host computer with Windows 10 operating system is required. Either a desktop or laptop should work.
 
 ### 1.2 **Python**
-Please install the latest version of [Anaconda](https://www.anaconda.com/products/individual) (Python3) and use Spyder for running the test scripts.
+Please install the latest version of [Anaconda](https://www.anaconda.com/products/individual) (Python3) on the host computer and use Spyder for running the test scripts.
 
 ## 2. Test Setup
 ### 2.1 **Daughter Board for the Chip**
@@ -22,9 +22,9 @@ Fig. 1. Top view of the daughter board
 Fig. 2. Bottom view of the daughter board
 
 ### 2.2 **FT232H USB-to-GPIO Bridge**
-Three [FT232H USB-to-GPIO bridge boards](https://www.adafruit.com/product/2264#description) from AdaFruit are needed in this setup for controlling the chip. Please purchase them online from Adafruit. After getting the boards, follow this [page](https://learn.adafruit.com/circuitpython-on-any-computer-with-ft232h/windows) to install driver for the boards using Zadig. Note: you only need to follow the "Plug in FT232H & Fix Driver with Zadig" part on this page, as we do not use the boards in the same way as they suggest.
+Three [FT232H USB-to-GPIO bridge boards](https://www.adafruit.com/product/2264#description) from AdaFruit are needed in this setup for controlling the chip. Please purchase them online from Adafruit. After getting the boards, follow this [page](https://learn.adafruit.com/circuitpython-on-any-computer-with-ft232h/windows) to install driver for the boards using Zadig on the host computer. Note: you only need to follow the "Plug in FT232H & Fix Driver with Zadig" part on this page, as we do not use the boards in the same way as they suggest.
 
-After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb libraries:
+After the driver is installed, open an Anaconda prompt on the host computer, install pyftdi and pyusb libraries:
 ```
     pip install pyftdi
     pip install pyusb
@@ -39,15 +39,18 @@ Fig. 3. FT232H USB-to-GPIO Bridge Board
 The last step for setting-up the bridges is to connect them to the host computer via USB cables (note the latest bridge version uses USB type-C) and figure out what their USB addresses are. Use "find_usb_addr.py" in this repository to achieve that. For example, when running line 25 and line 27 for checking which bridge board has the USB address of 'gpio0', use saleae or simply a multimeter to probe pin D0 of each board. The one that toggles should have the USB address from the first check. Correspondances can be established similarly for the second and third checks and eventually you can figure out the USB addresses for the input bridge and output bridges. After that, replace line 17 ~ 19 in "tempsensor_ctrl.py" with the correct USB addresses you get.
 
 ### 2.3 **Temperature Chamber**
-Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
+Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python on the host computer: 
 ```
     pip install minimalmodbus
 ```
 
 After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you may need a USB-to-RS232 converter, which is commonly available on Amazon. 'MODBUS_EXP.py' in this repository provides an example on how to control the temperature chamber through Python.
 
-### 2.4 **Source and Measurement Unit**
-Though theoretically you could use any source meter from Agilent/Keysight, it is highly recommended that you have Agilent/Keysight B2902A available as the control commands used in this repository are B2902A-specific. 
+### 2.4 **Source and Measurement Unit (SMU)**
+Though theoretically you could use any SMU from Agilent/Keysight, it is highly recommended that you have Agilent/Keysight B2902A available as the control commands used in this repository are B2902A-specific. To automate SMU B2902A, first download the [Keysight Instrument Control Bundle](https://www.keysight.com/us/en/lib/software-detail/computer-software/keysight-instrument-control-bundle-download-1184883.html), install "IO Libraries Suite" and "Command Expert" on the host computer. After installing those, connect the SMU to the host computer via a USB type-A or printer cable. Open "Keysight Connection Expert" and check whether the SMU is detected. Then, install the pyvisa library in Python on the host computer: 
+```
+    pip install pyvisa
+```
 
 ### 2.5 **Other Equipments**
 
