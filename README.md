@@ -1,6 +1,6 @@
 # openFASOC Temperature Sensors in SkyWater 130nm: Test Setup
 
-This repository provides a fully open-source test setup solution for a temperature sensor chip taped-out in SkyWater 130nm with 64 openFASOC-generated temperature sensor instances. The setup is highly automated with Python and open-source libraries, where the chip is controled through low-cost commercially-available USB devices, and control of testing equipments like temperature chambers and source meters is also seamlessly embedded in the test flow using Python. 
+This repository provides a fully open-source test setup solution for a temperature sensor chip taped-out in SkyWater 130nm with 64 openFASOC-generated temperature sensor instances. The setup is highly automated with Python and open-source libraries, where the chip is controlled through low-cost commercially-available USB devices, and control of testing equipments like temperature chambers and source meters is also seamlessly embedded in the test flow using Python. 
 
 **Author:** [Qirui Zhang](https://www.linkedin.com/in/cary-qirui-zhang/) from the [University of Michigan, Ann Arbor](https://micl.engin.umich.edu/)
 
@@ -34,7 +34,9 @@ After the installations, please connect the three bridges to the daughter board 
 
 <img src="FT232H.jpg" width="600">
 Fig. 3. FT232H USB-to-GPIO Bridge Board
+<br />
 
+The last step for setting-up the bridges is to connect them to the host computer via USB cables (note the latest bridge version uses USB type-C) and figure out what their USB addresses are. Use "find_usb_addr.py" in this repository to achieve that. For example, when running line 25 and line 27 for checking which bridge board has the USB address of 'gpio0', use saleae or simply a multimeter to probe pin D0 of each board. The one that toggles should have the USB address from the first check. Correspondances can be established similarly for the second and third checks and eventually you can figure out the USB addresses for the input bridge and output bridges. After that, replace line 17 ~ 19 in "tempsensor_ctrl.py" with the correct USB addresses you get.
 
 ### 2.3 **Temperature Chamber**
 Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
@@ -42,7 +44,7 @@ Please make sure you use a TestEquity temperature chamber with the [F4 controlle
     pip install minimalmodbus
 ```
 
-After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you need to purchase a USB-to-RS232 converter, which is commonly available on Amazon.
+After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you may need a USB-to-RS232 converter, which is commonly available on Amazon.
 
 ### 2.4 **Source and Measurement Unit**
 
