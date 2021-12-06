@@ -30,8 +30,8 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
     pip install pyusb
 ```
 
-<img src="PCBbot.png" width="600">
-Fig. 3. Bottom view of the daughter board
+<img src="FT232H.png" width="600">
+Fig. 3. FT232H USB-to-GPIO Bridge Board
 
 
 ### 2.3 **Temperature Chamber**
