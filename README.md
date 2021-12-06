@@ -30,6 +30,10 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
     pip install pyusb
 ```
 
+<img src="PCBbot.png" width="600">
+Fig. 3. Bottom view of the daughter board
+
+
 ### 2.3 **Temperature Chamber**
 Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
 ```
