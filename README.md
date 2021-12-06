@@ -58,6 +58,15 @@ Though theoretically you could use any SMU from Agilent/Keysight, it is highly r
 A clock source is required to generate input for the "CLK_REF" pin of the chip. It is recommended to use a commonly-seen waveform generator to generate a 32.768kHz square wave with 3.0V peak-to-peak voltage and connect that clock to "CLK_REF". An oscilloscope is also very helpful, where the "CLK_OUT" pin can be connected to and observed for debugging the chip. It is also recommended to have a saleae logic analyzer for early-stage debugging of the test setup.
 
 ## 3. Running the Scripts for Automated Testing
+### 3.1 **tempsensor_sancheck.py**
+This script provides a sanity check for testing whether a selected temperature sensor instance works. The script will ask the user to turn on the clock source and power supplies, and input configurations to the chip. Then the script will ask the user whether to release reset, and the counter output (DOUT) corresponding to the selected instance and configurations will be returned after the reset is released.
+
+
+### 3.2 **tempsensor_testFreqAll.py**
+
+### 3.3 **tempsensor_testResPowerAll .py**
+
+
 
 ## 4. Acknowledgements
 The author would like to thank Google and SkyWater for fabrication of the test chip.
