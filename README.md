@@ -34,7 +34,7 @@ After the installations, please connect the three bridges to the daughter board 
 
 <img src="FT232H.jpg" width="600">
 Fig. 3. FT232H USB-to-GPIO Bridge Board
-<br />
+<br /><br />
 
 The last step for setting-up the bridges is to connect them to the host computer via USB cables (note the latest bridge version uses USB type-C) and figure out what their USB addresses are. Use "find_usb_addr.py" in this repository to achieve that. For example, when running line 25 and line 27 for checking which bridge board has the USB address of 'gpio0', use saleae or simply a multimeter to probe pin D0 of each board. The one that toggles should have the USB address from the first check. Correspondances can be established similarly for the second and third checks and eventually you can figure out the USB addresses for the input bridge and output bridges. After that, replace line 17 ~ 19 in "tempsensor_ctrl.py" with the correct USB addresses you get.
 
