@@ -38,4 +38,4 @@ Output-bridge0 Pins:
 	D6:	DOUT2
 	D5:	DOUT1
 	D4:	DOUT0
-            	D3:     	DONE
+	D3:    	DONE
