@@ -4,7 +4,7 @@ Created on Fri Oct 22 2021
 
 @author: Qirui Zhang
 
-Sky130TempSensor Chip Testing Sanity Check for a single node
+Sky130TempSensor chip testing: sanity check for a single instance
 """
 
 

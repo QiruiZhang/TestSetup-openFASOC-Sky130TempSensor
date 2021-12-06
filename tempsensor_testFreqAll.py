@@ -4,7 +4,7 @@ Created on Fri Oct 22 2021
 
 @author: Qirui Zhang
 
-Sky130TempSensor Chip Testing Freqs of all 64 designs across temperatures with CTR LUT
+Sky130TempSensor chip testing: RO frequencies (raw temperature reads) of all 64 designs across temperatures
 """
 
 '''

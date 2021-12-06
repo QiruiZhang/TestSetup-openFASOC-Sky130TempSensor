@@ -4,7 +4,7 @@ Created on Fri Oct 22 2021
 
 @author: Qirui Zhang
 
-Sky130TempSensor Chip Testing Powers of all 64 designs on a chip given one temperature and supply voltages
+Sky130TempSensor chip testing: powers and resolutions of all 64 designs on a chip given one temperature and supply voltages
 """
 
 '''
