@@ -30,6 +30,12 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
     pip install pyusb
 ```
 
+After the installations, please connect the three bridges to the daughter board via jumper wires according to "PinMap.txt" in this repository. The pin numbers of bridge boards are already printed on-board, like what is shown in Fig. 3, while the chip I/O names are printed on the bottom of the daughter board shown in Fig. 2. The three bridges are named "Input-bridge", "Output-bridge1" and "Output-bridge0", where the input bridge is used for all the input pins of the chip and the output bridges are used for chip output pins. After connect the chip I/Os, also remember to connect the ground pins of each bridge to the daughter board ground for a common ground.
+
+<img src="FT232H.jpg" width="600">
+Fig. 3. FT232H USB-to-GPIO Bridge Board
+
+
 ### 2.3 **Temperature Chamber**
 Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
 ```
