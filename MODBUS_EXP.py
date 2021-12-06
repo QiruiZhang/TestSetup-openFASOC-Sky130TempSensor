@@ -2,7 +2,9 @@
 """
 Created on Thu Oct 28 20:57:47 2021
 
-@author: 95864
+@author: Qirui Zhang
+
+Example codes for automating the temperature chamber through Modbus
 """
 
 import minimalmodbus as modbus

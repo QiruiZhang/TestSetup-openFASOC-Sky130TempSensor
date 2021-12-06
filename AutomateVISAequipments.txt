@@ -1,6 +1,0 @@
-1. Download Keysight Instrument Control Bundle.
-	- https://www.keysight.com/us/en/lib/software-detail/computer-software/keysight-instrument-control-bundle-download-1184883.html
-2. Install the IO Libraries Suite and Command Expert.
-3. Play with Command Expert for whatever commands you need to use.
-4. Export your command sequence into your language of choice. E. g., in Python2/3, PyVISA library is used to implement commanding.
-	- In your terminal, type 'pip3 install pyvisa' to install PyVISA

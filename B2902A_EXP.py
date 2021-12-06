@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec  5 21:46:45 2021
+
+@author: Qirui Zhang
+
+Example codes for automating Agilent B2902A
+"""
+
 import pyvisa as pvisa
 import time
 
