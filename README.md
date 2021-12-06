@@ -36,7 +36,7 @@ After the installations, please connect the three bridges to the daughter board 
 Fig. 3. FT232H USB-to-GPIO Bridge Board
 <br /><br />
 
-The last step for setting-up the bridges is to connect them to the host computer via USB cables (note the latest bridge version uses USB type-C) and figure out what their USB addresses are. Use "find_usb_addr.py" in this repository to achieve that. For example, when running line 25 and line 27 for checking which bridge board has the USB address of 'gpio0', use saleae or simply a multimeter to probe pin D0 of each board. The one that toggles should have the USB address from the first check. Correspondances can be established similarly for the second and third checks and eventually you can figure out the USB addresses for the input bridge and output bridges. After that, replace line 17 ~ 19 in "tempsensor_ctrl.py" with the correct USB addresses you get.
+The last step for setting-up the bridges is to connect them to the host computer via USB cables (note the latest bridge version uses USB type-C) and figure out what their USB addresses are. Use "find_usb_addr.py" in this repository to achieve that. For example, when running line 25 and line 27 for checking which bridge board has the USB address of 'gpio0', use a saleae logic analyzer or simply a multimeter to probe pin D0 of each board. The one that toggles should have the USB address from the first check. Correspondances can be established similarly for the second and third checks and eventually you can figure out the USB addresses for the input bridge and output bridges. After that, replace line 17 ~ 19 in "tempsensor_ctrl.py" with the correct USB addresses you get.
 
 ### 2.3 **Temperature Chamber**
 Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python on the host computer: 
@@ -55,6 +55,7 @@ Though theoretically you could use any SMU from Agilent/Keysight, it is highly r
 "B2902A_EXP.py" in this repository provides an example on how to control the SMU through Python. If you use any SMU other than B2902A, you may connect it to the host computer in the same way as B2902A, check for its existance in "Keysight Connection Expert" and then open "Command Expert". There you can experiment your SMU with the commands you may need. After that, simply click "File"->"Export Sequence" through the menu, select "Python with calls to PyVISA" for "Language" and click "Save to File" to get the Python codes to automate your SMU of choice.
 
 ### 2.5 **Other Equipments**
+A clock source is required to generate input for the "CLK_REF" pin of the chip. It is recommended to use a commonly-seen waveform generator to generate a 32.768kHz square wave with 3.0V peak-to-peak voltage and connect that clock to "CLK_REF". An oscilloscope is also very helpful, where the "CLK_OUT" pin can be connected to and observed for debugging the chip. It is also recommended to have a saleae logic analyzer for early-stage debugging of the test setup.
 
 ## 3. Running the Scripts for Automated Testing
 
