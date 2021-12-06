@@ -17,12 +17,12 @@ The daughter board could be as simple as one that directly connects all the chip
 
 <img src="PCBtop.png" width="600">
 Fig. 1. Top view of the daughter board
-<br /> <br /> <br />
+<br /><br />
 <img src="PCBbot.png" width="600">
 Fig. 2. Bottom view of the daughter board
 
-### 2.2 **FT232H USB-GPIO Bridge**
-Three FT232H USB-GPIO bridge boards from AdaFruit are needed in this setup for controlling the chip. Please purchase them online from Adafruit. After getting the boards, follow this [page](https://learn.adafruit.com/circuitpython-on-any-computer-with-ft232h/windows) to install driver for the boards using Zadig. Note: you only need to follow the "Plug in FT232H & Fix Driver with Zadig" part on this page, as we do not use the boards in the same way as they suggest.
+### 2.2 **FT232H USB-to-GPIO Bridge**
+Three [FT232H USB-to-GPIO bridge boards](https://www.adafruit.com/product/2264#description) from AdaFruit are needed in this setup for controlling the chip. Please purchase them online from Adafruit. After getting the boards, follow this [page](https://learn.adafruit.com/circuitpython-on-any-computer-with-ft232h/windows) to install driver for the boards using Zadig. Note: you only need to follow the "Plug in FT232H & Fix Driver with Zadig" part on this page, as we do not use the boards in the same way as they suggest.
 
 After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb libraries:
 ```
@@ -31,7 +31,12 @@ After the driver is installed, open an Anaconda prompt, install pyftdi and pyusb
 ```
 
 ### 2.3 **Temperature Chamber**
-Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/RS-232-F4-resources) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. 
+Please make sure you use a TestEquity temperature chamber with the [F4 controller](https://www.testequity.com/Series-F4-Controller) from Watlow Electric. Any other temperature chambers are not guaranteed to work with this setup. The temperature chamber can be automated through Python using an RS232 cable and the Modbus protocol. Install the minimalmodbus library in Python: 
+```
+    pip install minimalmodbus
+```
+
+After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you need to purchase a USB-to-RS232 converter, which is commonly available on Amazon.
 
 ### 2.4 **Source and Measurement Unit**
 
