@@ -73,4 +73,4 @@ The author would like to thank Google and SkyWater for fabrication of the test c
 ## 5. License
 The source code is released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-For any technical issues, please contact Qirui Zhang <qiruizhATumich.com>.
+For any technical issues, please contact Qirui Zhang <qiruizh@umich.com> and Mehdi Saligane <mehdi@umich.edu>.
