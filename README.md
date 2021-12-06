@@ -52,6 +52,8 @@ Though theoretically you could use any SMU from Agilent/Keysight, it is highly r
     pip install pyvisa
 ```
 
+"B2902A_EXP.py" in this repository provides an example on how to control the SMU through Python. If you use any SMU other than B2902A, you may connect it to the host computer in the same way as B2902A, check for its existance in "Keysight Connection Expert" and then open "Command Expert". There you can experiment your SMU with the commands you may need. After that, simply click "File"->"Export Sequence" through the menu, select "Python with calls to PyVISA" for "Language" and click "Save to File" to get the Python codes to automate your SMU of choice.
+
 ### 2.5 **Other Equipments**
 
 ## 3. Running the Scripts for Automated Testing
