@@ -44,9 +44,10 @@ Please make sure you use a TestEquity temperature chamber with the [F4 controlle
     pip install minimalmodbus
 ```
 
-After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you may need a USB-to-RS232 converter, which is commonly available on Amazon.
+After installation of minimalmodbus, connect the temperature chamber's RS232 port to your host computer through an [null-modem](https://www.testequity.com/RS-232-F4-resources) RS232 cable. It is best if your host computer is a desktop made for electronic testing, which typically comes with an RS232 port. If not, you may need a USB-to-RS232 converter, which is commonly available on Amazon. 'MODBUS_EXP.py' in this repository provides an example on how to control the temperature chamber through Python.
 
 ### 2.4 **Source and Measurement Unit**
+Though theoretically you could use any source meter from Agilent/Keysight, it is highly recommended that you have Agilent/Keysight B2902A available as the control commands used in this repository are B2902A-specific. 
 
 ### 2.5 **Other Equipments**
 
