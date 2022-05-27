@@ -14,9 +14,17 @@ import numpy as np
 '''
 GPIO Board USB addresses
 '''
-gpio_in_addr = "ftdi://ftdi:232h:00:fd/1" # {SEL_INST[1:0], SEL_GRP[2:0], SEL_DESIGN, SEL_CTR[3:0], RESET_REGn} = {C7:C0, D7:D5}
+gpio_in_addr = "ftdi://ftdi:232h:00:ff/1" # {SEL_INST[1:0], SEL_GRP[2:0], SEL_DESIGN, SEL_CTR[3:0], RESET_REGn} = {C7:C0, D7:D5}
 gpio_out1_addr = "ftdi://ftdi:232h:00:fe/1" # {C7:C0, D7:D4} = DOUT[23:12] 
-gpio_out0_addr = "ftdi://ftdi:232h:00:ff/1" # {C7:C0, D7:D3} = {DOUT[11:0], DONE}
+gpio_out0_addr = "ftdi://ftdi:232h:00:fd/1" # {C7:C0, D7:D3} = {DOUT[11:0], DONE}
+
+'''
+SSC-L Revision Setting
+    - USB Ports No. 1, 2 and 3 marked on the hub.
+    - No.1: gpio_in_addr, 255
+    - No.2: gpio_out1_addr, 254
+    - No.3: gpio_out0_addr, 253
+'''
 
 '''
 Conversion Time and Repeat-sampling LUT for different Design Groups
