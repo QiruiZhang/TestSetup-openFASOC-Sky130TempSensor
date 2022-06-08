@@ -1,13 +1,13 @@
-function [figout, hdl] = PlotInacc(figin, tlist, inacc_arr, inacc_arr_sec, sigmas_sec, design)
+function [figout, hdl] = PlotInacc(figin, tlist, inacc_arr, inacc_arr_sec, sigmas_sec, design, trim1, trim2)
 % Plot Inaccuracy and 3-sigma against temp
 
 sigmas = sigmas_sec;
 hdl = figure(figin);
 [~, Nchip] = size(inacc_arr);
-fs = 28;
-fs_axis = 20;
-fs_legend = 18;
-fs_txtbox = 20;
+fs = 16;
+fs_axis = 16;
+fs_legend = 14;
+fs_txtbox = 16;
 
 % Plot inaccuracies
 for i = 1:Nchip
@@ -27,6 +27,14 @@ hold on;
 psigma = plot(tlist, sigmas(:, 2), '--rs', 'MarkerSize', 12, 'LineWidth', 1);
 hold off;
 
+% Plot Trim Points
+hold on;
+xline(trim1, '--k', 'LineWidth', 1);
+hold off;
+hold on;
+ptrim = xline(trim2, '--k', 'LineWidth', 1);
+hold off;
+
 % Axis
 xlim([tlist(1)-10, tlist(length(tlist))+10]);
 neg = min(min(min(inacc_arr)), min(min(sigmas))); pos = max(max(max(inacc_arr)), max(max(sigmas)));
@@ -38,11 +46,11 @@ xlabel('Temperature (°C)', 'FontSize', fs);
 ylabel('Error (°C)', 'FontSize', fs);
 
 % Set figure position and size
-set(gcf, 'Position', [0 0 800 400]);
+set(gcf, 'Position', [0 0 800 360]);
 
 % Legend
-leg = legend([p_inacc, p_inacc_sec, psigma], 'w/o SEC', 'w/ SEC', '3\sigma w/ SEC', 'FontSize', fs_legend, 'Box', 'off');
-rect = [0.65, 0.62, 0.25, 0.25];
+leg = legend([p_inacc, p_inacc_sec, psigma, ptrim], 'w/o SEC', 'w/ SEC', '3\sigma w/ SEC', 'Trim Points', 'FontSize', fs_legend, 'Box', 'off');
+rect = [0.65, 0.65, 0.25, 0.25];
 set(leg, 'Position', rect)
 leg.ItemTokenSize = [50, 18];
 

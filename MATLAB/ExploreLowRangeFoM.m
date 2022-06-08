@@ -63,7 +63,8 @@ fprintf("3-sigma error w/o SEC is %f/+%f degreeC. \n", neg_sigma_inacc(1), pos_s
 fprintf("Max/Min error w/ SEC is %f/+%f degreeC. \n", neg_inacc(2), pos_inacc(2));
 fprintf("3-sigma error w/ SEC is %f/+%f degreeC. \n", neg_sigma_inacc(2), pos_sigma_inacc(2));
     % Plot Inaccuracy and 3-sigma against temp
-[fig, hdl] = PlotInacc(fig, tlist(tstart_ind:(tstart_ind + twin_len)), inacc_sub_arr, inacc_sub_arr_sec, sigma_sec, design);
+trim1 = tlist(tstart_ind + pcalib); trim2 = tlist(tstart_ind + twin_len - pcalib);
+[fig, hdl] = PlotInacc(fig, tlist(tstart_ind:(tstart_ind + twin_len)), inacc_sub_arr, inacc_sub_arr_sec, sigma_sec, design, trim1, trim2);
 saveas(hdl, './Figures/InaccVStemp_hdrA_lr.emf');
     % Report FoM
 fprintf("Power, EnC, res and FoM are %fuW, %fnJ, %fK, %fpJ*K^2. \n", power, EnC, res, FoM);
@@ -80,7 +81,8 @@ fprintf("3-sigma error w/o SEC is %f/+%f degreeC. \n", neg_sigma_inacc(1), pos_s
 fprintf("Max/Min error w/ SEC is %f/+%f degreeC. \n", neg_inacc(2), pos_inacc(2));
 fprintf("3-sigma error w/ SEC is %f/+%f degreeC. \n", neg_sigma_inacc(2), pos_sigma_inacc(2));
     % Plot Inaccuracy and 3-sigma against temp
-[fig, hdl] = PlotInacc(fig, tlist(tstart_ind:(tstart_ind + twin_len)), inacc_sub_arr, inacc_sub_arr_sec, sigma_sec, design);
+trim1 = tlist(tstart_ind + pcalib); trim2 = tlist(tstart_ind + twin_len - pcalib);
+[fig, hdl] = PlotInacc(fig, tlist(tstart_ind:(tstart_ind + twin_len)), inacc_sub_arr, inacc_sub_arr_sec, sigma_sec, design, trim1, trim2);
 saveas(hdl, './Figures/InaccVStemp_hdrB_lr.emf');
     % Report FoM
 fprintf("Power, EnC, res and FoM are %fuW, %fnJ, %fK, %fpJ*K^2. \n", power, EnC, res, FoM);
