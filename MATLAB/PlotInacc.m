@@ -4,10 +4,10 @@ function [figout, hdl] = PlotInacc(figin, tlist, inacc_arr, inacc_arr_sec, sigma
 sigmas = sigmas_sec;
 hdl = figure(figin);
 [~, Nchip] = size(inacc_arr);
-fs = 16;
-fs_axis = 16;
+fs = 20;
+fs_axis = 18;
 fs_legend = 14;
-fs_txtbox = 16;
+fs_txtbox = 18;
 
 % Plot inaccuracies
 for i = 1:Nchip
@@ -42,15 +42,15 @@ ylim([min(neg*1.5, -1.5), max(pos*1.5, 1.5)]);
 set(gca,'FontSize',fs_axis);
 
 % Labels
-xlabel('Temperature (°C)', 'FontSize', fs);
-ylabel('Error (°C)', 'FontSize', fs);
+xlabel('Temperature (°C)', 'FontSize', fs_axis);
+ylabel('Error (°C)', 'FontSize', fs_axis);
 
 % Set figure position and size
 set(gcf, 'Position', [0 0 800 360]);
 
 % Legend
 leg = legend([p_inacc, p_inacc_sec, psigma, ptrim], 'w/o SEC', 'w/ SEC', '3\sigma w/ SEC', 'Trim Points', 'FontSize', fs_legend, 'Box', 'off');
-rect = [0.65, 0.65, 0.25, 0.25];
+rect = [0.65, 0.63, 0.25, 0.25];
 set(leg, 'Position', rect)
 leg.ItemTokenSize = [50, 18];
 
